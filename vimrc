@@ -42,6 +42,9 @@
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
 
+  " # ALE
+    let g:ale_completion_enabled = 1
+
 " Auto bracket
   inoremap " ""<left>
   inoremap ' ''<left>
@@ -50,3 +53,11 @@
   inoremap { {}<left>
   inoremap {<CR> {<CR>}<ESC>O
   inoremap {;<CR> {<CR>};<ESC>O
+
+" packages helpers
+  " Load all plugins now.
+  " Plugins need to be added to runtimepath before helptags can be generated.
+  packloadall
+  " Load all of the helptags now, after plugins have been loaded.
+  " All messages and errors will be ignored.
+  silent! helptags ALL"
