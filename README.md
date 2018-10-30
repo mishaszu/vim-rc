@@ -1,7 +1,6 @@
 # VIM package with configuration
 
-## master you configuration
-**on master branch run:**
+## init vim configuration
 ```
 sh ./install.sh
 ```
@@ -11,24 +10,14 @@ to:
   - create .vim folder
   - install pathogen
 
-## bundle your bundles
-**on bundle branch:**
+## update vim file
+```
+sh ./update.sh
+```
+to:
+  - backup old vimrc file
+  - move vimrc file to main directory
 
-1) move to .vim folder
-2) clone repo
-```
-git clone https://github.com/mishaszu/vim-bundle.git
-```
-3) checkout branch
-```
-git checkout bundle
-```
-4) init all submodules
-```
-git submodule update --init
-```
+## bundle
 
-to update all submodules just type:
-```
-git submodule update
-```
+To install my custom bundles follow my [vim-bundle](https://github.com/mishaszu/vim-bundle) repository
