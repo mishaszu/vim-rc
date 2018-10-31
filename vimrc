@@ -6,7 +6,7 @@
   colorscheme ramda
 
 " file encoding
-  set encoding=utf-8
+  set encoding=UTF-8
 
 " basic setup
   set binary
@@ -45,6 +45,10 @@
 
   " # ALE
     let g:ale_completion_enabled = 1
+
+  " # devicons
+    let g:airline_powerline_fonts = 1"
+    set guifont=DroidSansMono_Nerd_Font:h11
 
 " Auto bracket
   inoremap " ""<left>
