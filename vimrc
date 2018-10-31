@@ -21,9 +21,9 @@
   set backspace=indent,eol,start
 
 " Indentation
-  set tabstop=4
-  set softtabstop=4
-  set shiftwidth=4
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
   set expandtab
   set autoindent 
 
@@ -51,6 +51,10 @@
   " # devicons
     let g:airline_powerline_fonts = 1"
     set guifont=DroidSansMono_Nerd_Font:h11
+
+  " # vim-prettier
+  let g:prettier#exec_cmd_async = 1
+
 
 " Auto bracket
   inoremap " ""<left>
