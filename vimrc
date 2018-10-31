@@ -1,14 +1,14 @@
-" Init pathogen"
+" Init pathogen
   execute pathogen#infect()
 
-" turn on syntax"
+" turn on syntax
   syntax on
   colorscheme ramda
 
-" file encoding"
+" file encoding
   set encoding=utf-8
 
-" basic setup"
+" basic setup
   set binary
   set noeol
   set history=700
@@ -18,8 +18,9 @@
   set incsearch
   set t_Co=256
   set number
+  set backspace=indent,eol,start
 
-" Indentation"
+" Indentation
   set tabstop=2
   set shiftwidth=2
   set expandtab
