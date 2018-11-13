@@ -8,6 +8,10 @@
 " file encoding
   set encoding=UTF-8
 
+" enable vim for single projects
+  set exrc
+  set secure
+
 " basic setup
   set binary
   set noeol
