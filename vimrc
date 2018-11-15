@@ -34,7 +34,7 @@
 " Plugins
 
   " # Nerdtree
-  :let g:NERDTreeWinSize=60"
+  :let g:NERDTreeWinSize=30"
 
   " # Rust.vim
   let g:rustfmt_autosave = 1
