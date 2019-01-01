@@ -3,7 +3,7 @@
 
 " turn on syntax
   syntax on
-  colorscheme ramda
+  colorscheme panda
 
 " file encoding
   set encoding=UTF-8
@@ -34,10 +34,11 @@
 " Plugins
 
   " # Nerdtree
-  :let g:NERDTreeWinSize=30"
+    let g:NERDTreeWinPos = "right"
+    let NERDTreeWinSize=26
 
   " # Rust.vim
-  let g:rustfmt_autosave = 1
+    let g:rustfmt_autosave = 1
 
   " # Syntastic
     set statusline+=%#warningmsg#
@@ -62,16 +63,6 @@
     " let g:prettier#config#bracket_spacing = 'true'
     " let g:prettier#config#trailing_comma = 'all'
     " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml Prettier
-
-
-" Auto bracket
-  inoremap " ""<left>
-  inoremap ' ''<left>
-  inoremap ( ()<left>
-  inoremap [ []<left>
-  inoremap { {}<left>
-  inoremap {<CR> {<CR>}<ESC>O
-  inoremap {;<CR> {<CR>};<ESC>O
 
 " packages helpers
   " Load all plugins now.
