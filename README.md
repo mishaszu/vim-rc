@@ -8,7 +8,7 @@ sh ./install.sh
 to:
   - move vimrc file to main directory
   - create .vim folder
-  - install pathogen
+  - install vim-plug
 
 ## update vim file
 ```
@@ -18,6 +18,6 @@ to:
   - backup old vimrc file
   - move vimrc file to main directory
 
-## bundle
-
-To install my custom bundles follow my [vim-bundle](https://github.com/mishaszu/vim-bundle) repository
+## to install all packages
+  - enter vim
+  - type :PlugInstall
