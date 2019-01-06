@@ -21,3 +21,11 @@ to:
 ## to install all packages
   - enter vim
   - type :PlugInstall
+
+## youcompleteme rust completion:
+*cargo +nightly install racer*
+Add *racer* to Path
+Add *RUST_SRC_PATH* (lib/rustlib/src/rust/src)
+```
+./install.py --racer-completer
+```

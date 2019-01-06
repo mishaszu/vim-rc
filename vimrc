@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
 
     " Rust plugins
     Plug 'rust-lang/rust.vim'
+    Plug 'Chiel92/vim-autoformat'
     
     " Frontend plugins
     Plug 'pangloss/vim-javascript'
@@ -29,7 +30,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'skielbasa/vim-material-monokai'
     Plug 'reasonml-editor/vim-reason-plus'
-
 
     " JSON
     Plug 'elzr/vim-json'
@@ -95,4 +95,7 @@ call plug#end()
     " # devicons
         let g:airline_powerline_fonts = 1"
         set guifont=DroidSansMono_Nerd_Font:h11
-
+    
+    " # vim-autoformat
+        let g:formatdef_rustfmt = '"rustfmt"'
+        let g:formatters_rust = ['rustfmt']
