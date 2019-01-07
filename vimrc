@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'wakatime/vim-wakatime'
     Plug 'Valloric/YouCompleteMe'
+    Plug 'tpope/vim-fugitive'
 
     " Syntax
     Plug 'markvincze/panda-vim'
@@ -70,7 +71,7 @@ call plug#end()
 
     " # Nerdtree
         let g:NERDTreeWinPos = "right"
-        let NERDTreeWinSize=26
+        let NERDTreeWinSize=35
 
     " # Rust.vim
         let g:rustfmt_autosave = 1
@@ -99,3 +100,8 @@ call plug#end()
     " # vim-autoformat
         let g:formatdef_rustfmt = '"rustfmt"'
         let g:formatters_rust = ['rustfmt']
+
+" Keymappings
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-n> :tabnew<CR>
