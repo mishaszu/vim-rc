@@ -29,3 +29,7 @@ Add *RUST_SRC_PATH* (lib/rustlib/src/rust/src)
 ```
 ./install.py --racer-completer
 ```
+
+To use ReasonMl:
+Get server from: https://github.com/jaredly/reason-language-server#vim
+Add client from: https://github.com/autozimu/LanguageClient-neovim#quick-start

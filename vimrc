@@ -30,7 +30,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'mxw/vim-jsx'
     Plug 'peitalin/vim-jsx-typescript'
     Plug 'skielbasa/vim-material-monokai'
+    " ReasonML
     Plug 'reasonml-editor/vim-reason-plus'
+    Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
     " JSON
     Plug 'elzr/vim-json'
@@ -100,6 +105,11 @@ call plug#end()
     " # vim-autoformat
         let g:formatdef_rustfmt = '"rustfmt"'
         let g:formatters_rust = ['rustfmt']
+
+    " # vim-reason-plus
+        let g:LanguageClient_serverCommands = {
+            \ 'reason': ['/Users/mishaszu/mike/dev/reason-language-server/reason-language-server.exe']
+            \ }
 
 " Keymappings
 map  <C-l> :tabn<CR>
