@@ -1,4 +1,7 @@
-# VIM package with configuration
+# Mishaszu VIM configuration
+Configuration is made mainly for:
+- Front-End Development (with Javascript, Typescript and ReasonML)
+- Rust Development
 
 ## List of content
 - [Installation](#installation)
