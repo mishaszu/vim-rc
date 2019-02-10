@@ -5,21 +5,21 @@
     - [Rust racer installation for you complete me](#YouCompleteMe-for-Rust)
     - [Setting up ReasonML language server](#ReasonML-language-server-setup)
 - [Update](#update)
+- [System variables](#System-variables)
 
 ## Installation
-1. **Installation command**
+1. **Installation command** for:
+    - move vimrc file to main directory
+    - create .vim folder
+    - install vim-plug
 ```sh
 sh ./install.sh
 ```
-*this command will:*
-- move vimrc file to main directory
-- create .vim folder
-- install vim-plug
+
 2. **Plugins Installation**
-  - enter vim
-  - type :PlugInstall
-or
-  - vim -c PlugInstall
+```sh
+vim -c PlugInstall
+```
 
 ### YouCompleteMe for Rust
 1. Install nightly build
@@ -46,24 +46,62 @@ cargo +nightly install racer
 2. Get Client (installed via Vim-plug)
 
 ## Update
-1. **Update command**
+1. **Update command** for
+    - backup old vimrc file
+    - move vimrc file to $HOME directory as *.vimrc*
 ```
 sh ./update.sh
 ```
-*this command will:*
-  - backup old vimrc file
-  - move vimrc file to main directory
-2. **Install new plugins** (if there are some)
-  - enter vim
-  - type :PlugInstall
-or
-  - vim -v PlugInstall
+
+2. **Install new plugins** (if there are some new)
+```sh
+vim -c PlugInstall
+```
 
 3. **Update plugins**
-  - enter vim
-  - type 
+```sh
+vim -c PlugUpdate
+```
 
 ## System variables
 1. **$REASONSERVER** - path to reason-language-server file
 2. **$NERDTREE_WIDTH** - NERDTree width
-  
+
+## Useful vim commands
+### Legend
+- <leader> = "\\"
+- <C-(some key)> = C stands for ctrl
+
+### System
+1. print system variables
+    - `:echo $`
+    - press: `ctrl + d`
+
+### Keybindings
+1. switch to next NERDTree tab
+    - `ctrl + l`
+2. switch to previous NERDTree tab
+    - `ctrl + h`
+3. toggle NERDTree
+    - `ctrl + n`
+4. focus NERDTree (unfortunately it's resizing split windows)
+    - `ctrl + f`
+5. split window vertically
+    - `ctrl + a`
+
+### Syntax
+- **comment** text selected in visual mode
+    - `<leader>cc`
+- **comment** current or selected line text with single comment
+    - `<leader>c<space>`
+- switch **surroundings**
+    - `cs<from><to>`
+    - for example `cs'"` = from *'* to *"*
+- delete **surroundings**
+    - `ds<from>`
+- **surround** text under cursor
+    - `ysiw<from>`
+    - opening brackets will add spacing
+    - closing brackets won't add spacing
+- run **prettier**
+    - `<leader>p`

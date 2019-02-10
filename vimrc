@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'tpope/vim-surround'
     Plug 'wakatime/vim-wakatime'
     Plug 'Valloric/YouCompleteMe', {
     \ 'do': './install.py --racer-completer'
@@ -21,6 +20,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdcommenter'
     Plug 'Yggdroot/indentLine'
     Plug 'Raimondi/delimitMate'
+    Plug 'tpope/vim-surround'
     Plug 'prettier/vim-prettier', {
     \ 'do': 'npm install',
     \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -145,6 +145,11 @@ call plug#end()
         let g:NERDSpaceDelims = 1
         let g:NERDCommentEmptyLines = 1
         let g:NERDTrimTrailingWhitespace = 1
+    " # prettier
+        let g:prettier#config#tab_width = 4
+        let g:prettier#config#print_width = 120
+        let g:prettier#config#single_quote = 'true'
+        let g:prettier#config#bracket_spacing = 'true'
 
 " Keymappings
     " next NERDTree tab
