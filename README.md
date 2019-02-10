@@ -2,10 +2,14 @@
 
 ## List of content
 - [Installation](#installation)
-    - [Rust racer installation for you complete me](#YouCompleteMe-for-Rust)
-    - [Setting up ReasonML language server](#ReasonML-language-server-setup)
+    - [Rust racer installation for you complete me](#youcompleteme-for-rust)
+    - [Setting up ReasonML language server](#reasonml-language-server-setup)
 - [Update](#update)
-- [System variables](#System-variables)
+- [System variables](#system-variables)
+- [Useful vim commands](#useful-vim-commands)
+    - [System](#system)
+    - [Keybindings](#keybindings)
+    - [Syntax](#syntax)
 
 ## Installation
 1. **Installation command** for:
@@ -16,7 +20,9 @@
 sh ./install.sh
 ```
 
-2. **Plugins Installation**
+2. **Set System Variables** [look here](#system-variables)
+
+3. **Plugins Installation**
 ```sh
 vim -c PlugInstall
 ```
@@ -69,8 +75,8 @@ vim -c PlugUpdate
 
 ## Useful vim commands
 ### Legend
-- <leader> = "\\"
-- <C-(some key)> = C stands for ctrl
+- `<leader>` = "\\"
+- `<C-(some key)>` = C stands for ctrl
 
 ### System
 1. print system variables
