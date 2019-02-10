@@ -109,8 +109,10 @@ vim -c PlugUpdate
 - delete **surroundings**
     - `ds<from>`
 - **surround** text under cursor
-    - `ysiw<from>`
+    - `ysiw<to>`
     - opening brackets will add spacing
     - closing brackets won't add spacing
+- **surround** text selected in visual mode
+    -`S<to>`
 - run **prettier**
     - `<leader>p`
