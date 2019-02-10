@@ -113,6 +113,6 @@ vim -c PlugUpdate
     - opening brackets will add spacing
     - closing brackets won't add spacing
 - **surround** text selected in visual mode
-    -`S<to>`
+    - `S<to>`
 - run **prettier**
     - `<leader>p`
