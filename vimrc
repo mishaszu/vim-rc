@@ -1,14 +1,14 @@
 " init all plugins with vim-plug
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
     " Vim functionality
-    Plug 'w0rp/ale'
+    Plug 'w0rp/ale', { 'for': ['css', 'less', 'scss'] }
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
     Plug 'wakatime/vim-wakatime'
     Plug 'Valloric/YouCompleteMe', {
-    \ 'do': './install.py --racer-completer'
+    \ 'do': './install.py --racer-completer && ./install.py --skip-build --typescript-completer'
     \}
 
     " Git
@@ -84,7 +84,7 @@ call plug#end()
     set softtabstop=4
     set shiftwidth=4
     set expandtab
-    set autoindent 
+    set autoindent
 
 " Plugins
 
@@ -125,14 +125,13 @@ call plug#end()
     " # ALE
         let g:ale_completion_enabled = 1
         let g:ale_fixers = {
-        \   'javascript': ['prettier'],
         \   'css': ['prettier'],
         \}
 
     " # devicons
         let g:airline_powerline_fonts = 1"
         set guifont=DroidSansMono_Nerd_Font:h11
-    
+
     " # vim-autoformat
         let g:formatdef_rustfmt = '"rustfmt"'
         let g:formatters_rust = ['rustfmt']
