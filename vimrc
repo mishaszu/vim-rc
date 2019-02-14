@@ -48,7 +48,7 @@ call plug#begin('~/.vim/bundle')
     \ }
 
     " JSON
-    Plug 'elzr/vim-json'
+    Plug 'elzr/vim-json', { 'for': ['json'] }
 
 call plug#end()
 
@@ -161,4 +161,5 @@ call plug#end()
     map  <C-f> :NERDTree<CR>
     " split window vertically
     map  <C-a> :vsplit<CR>
+
 
