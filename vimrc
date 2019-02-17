@@ -8,8 +8,9 @@ call plug#begin('~/.vim/bundle')
     Plug 'ryanoasis/vim-devicons'
     Plug 'wakatime/vim-wakatime'
     Plug 'Valloric/YouCompleteMe', {
-    \ 'do': './install.py --racer-completer && ./install.py --skip-build --typescript-completer'
+    \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer'
     \}
+    Plug 'ryanoasis/vim-devicons'
 
     " Git
     Plug 'tpope/vim-fugitive'
@@ -86,6 +87,9 @@ call plug#end()
     set expandtab
     set autoindent
 
+" Enable clipboard
+    set clipboard=unnamedplus
+
 " Plugins
 
     " # Nerdtree
@@ -161,5 +165,4 @@ call plug#end()
     map  <C-f> :NERDTree<CR>
     " split window vertically
     map  <C-a> :vsplit<CR>
-
 
