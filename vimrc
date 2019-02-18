@@ -2,13 +2,15 @@
 call plug#begin('~/.vim/bundle')
 
     " Vim functionality
-    Plug 'w0rp/ale', { 'for': ['css', 'less', 'scss'] }
+    Plug 'w0rp/ale', {
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
     Plug 'wakatime/vim-wakatime'
     Plug 'Valloric/YouCompleteMe', {
-    \ 'do': './install.py --racer-completer && ./install.py --skip-build --typescript-completer'
+    \ 'do': './install.py --racer-completer && ./install.py --skip-build --typescript-completer',
+    \ 'for': 'Rust'
     \}
 
     " Git
@@ -126,7 +128,11 @@ call plug#end()
         let g:ale_completion_enabled = 1
         let g:ale_fixers = {
         \   'css': ['prettier'],
+        \   'scss': ['prettier'],
+        \   'typescript': ['prettier', 'tslint'],
+        \   'javascript': ['prettier', 'eslint']
         \}
+        let g:ale_fix_on_save = 1
 
     " # devicons
         let g:airline_powerline_fonts = 1"
@@ -140,26 +146,31 @@ call plug#end()
         let g:LanguageClient_serverCommands = {
             \ 'reason': ['$REASONSERVER']
             \ }
+
     " # nerdcommenter
         let g:NERDSpaceDelims = 1
         let g:NERDCommentEmptyLines = 1
         let g:NERDTrimTrailingWhitespace = 1
+
     " # prettier
         let g:prettier#config#tab_width = 4
         let g:prettier#config#print_width = 120
         let g:prettier#config#single_quote = 'true'
         let g:prettier#config#bracket_spacing = 'true'
+        let g:prettier#exec_cmd_async = 1
 
 " Keymappings
     " next NERDTree tab
-    map  <C-l> :tabn<CR>
+    map <C-l> :tabn<CR>
     " previous NERDTree tab
-    map  <C-h> :tabp<CR>
+    map <C-h> :tabp<CR>
     " toggle NERDTree open/close
-    map  <C-n> :NERDTreeToggle<CR>
+    map <C-n> :NERDTreeToggle<CR>
     " focus NERDTree
-    map  <C-f> :NERDTree<CR>
+    map <C-f> :NERDTree<CR>
     " split window vertically
-    map  <C-a> :vsplit<CR>
+    map <M-s> :vsplit<cr>
+    " prettier with Ale
+    map <C-a> :ALEFix<CR>
 
 
