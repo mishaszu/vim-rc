@@ -138,6 +138,7 @@ call plug#end()
         \   'javascript': ['prettier', 'eslint']
         \}
         let g:ale_fix_on_save = 1
+        let g:ale_echo_cursor = 0
 
     " # devicons
         let g:airline_powerline_fonts = 1"
