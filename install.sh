@@ -1,4 +1,4 @@
-cp -u ./.vimrc ~/
+cp -u ./vimrc ~/.vimrc
 mkdir -p ~/.vim
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

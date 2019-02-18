@@ -3,15 +3,17 @@ call plug#begin('~/.vim/bundle')
 
     " Vim functionality
     Plug 'w0rp/ale', {
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+    \}
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
     Plug 'wakatime/vim-wakatime'
     Plug 'Valloric/YouCompleteMe', {
-    \ 'do': './install.py --racer-completer && ./install.py --skip-build --typescript-completer',
+    \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
     \ 'for': 'Rust'
     \}
+    Plug 'ryanoasis/vim-devicons'
 
     " Git
     Plug 'tpope/vim-fugitive'
@@ -87,6 +89,9 @@ call plug#end()
     set shiftwidth=4
     set expandtab
     set autoindent
+
+" Enable clipboard
+    set clipboard=unnamedplus
 
 " Plugins
 
@@ -166,11 +171,8 @@ call plug#end()
     map <C-h> :tabp<CR>
     " toggle NERDTree open/close
     map <C-n> :NERDTreeToggle<CR>
-    " focus NERDTree
-    map <C-f> :NERDTree<CR>
     " split window vertically
-    map <M-s> :vsplit<cr>
+    map <C-a> :vsplit<cr>
     " prettier with Ale
-    map <C-a> :ALEFix<CR>
-
+    map <C-f> :ALEFix<CR>
 
