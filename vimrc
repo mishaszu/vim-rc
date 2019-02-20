@@ -29,7 +29,6 @@ call plug#begin('~/.vim/bundle')
     \ 'do': 'npm install',
     \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
-
     " Rust plugins
     Plug 'racer-rust/vim-racer', { 'for': 'rust'}
     Plug 'rust-lang/rust.vim', { 'for': 'rust'}
@@ -94,6 +93,9 @@ call plug#end()
 " Enable clipboard
     set clipboard=unnamedplus
 
+" Variable for Rust completion
+let g:ycm_rust_src_path = $RUST_SRC_PATH
+
 " Plugins
 
     " # Nerdtree
@@ -121,8 +123,7 @@ call plug#end()
         let g:rustfmt_autosave = 1
 
     " # Racer
-        let g:racer_cmd = "/home/mishka/.cargo/bin/racer"
-
+        let g:racer_cmd = $RACER_SRC_PATH
 
     " # Syntastic
         set statusline+=%#warningmsg#
