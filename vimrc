@@ -9,10 +9,10 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
     Plug 'wakatime/vim-wakatime'
-    Plug 'Valloric/YouCompleteMe', {
-    \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-    \ 'for': 'Rust'
-    \}
+    " Plug 'Valloric/YouCompleteMe', {
+    " \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
+    " \ 'for': 'rust'
+    " \}
     Plug 'ryanoasis/vim-devicons'
 
     " Git
@@ -31,8 +31,9 @@ call plug#begin('~/.vim/bundle')
 
 
     " Rust plugins
-    Plug 'rust-lang/rust.vim', { 'for': 'Rust'}
-    Plug 'Chiel92/vim-autoformat', { 'for': 'Rust'}
+    Plug 'racer-rust/vim-racer', { 'for': 'rust'}
+    Plug 'rust-lang/rust.vim', { 'for': 'rust'}
+    Plug 'Chiel92/vim-autoformat', { 'for': 'rust'}
     
     " Frontend plugins
     Plug 'pangloss/vim-javascript'
@@ -118,6 +119,10 @@ call plug#end()
 
     " # Rust.vim
         let g:rustfmt_autosave = 1
+
+    " # Racer
+        let g:racer_cmd = "/home/mishka/.cargo/bin/racer"
+
 
     " # Syntastic
         set statusline+=%#warningmsg#
