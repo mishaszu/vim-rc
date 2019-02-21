@@ -13,6 +13,7 @@ Configuration is made mainly for:
     - [System](#system)
     - [Keybindings](#keybindings)
     - [Syntax](#syntax)
+- [Plugins description](#plugins-description)
 
 ## Installation
 1. **Installation command** for:
@@ -28,6 +29,23 @@ sh ./install.sh
 3. **Plugins Installation**
 ```sh
 vim -c PlugInstall
+```
+## Update
+1. **Update command** for
+    - backup old vimrc file
+    - move vimrc file to $HOME directory as *.vimrc*
+```
+sh ./update.sh
+```
+
+2. **Install new plugins** (if there are some new)
+```sh
+vim -c PlugInstall
+```
+
+3. **Update plugins**
+```sh
+vim -c PlugUpdate
 ```
 
 ## Rust setup with `YouCompleteMe` and `ALE`
@@ -71,24 +89,6 @@ rustup component add rustfmt
     3. Place *reason-language-server.exe* in your dedicated directory (yes it's *.exe* even for macos and linux)
     4. Set *$REASONSERVER* system variable with path to server
 2. Get Client (installed via Vim-plug)
-
-## Update
-1. **Update command** for
-    - backup old vimrc file
-    - move vimrc file to $HOME directory as *.vimrc*
-```
-sh ./update.sh
-```
-
-2. **Install new plugins** (if there are some new)
-```sh
-vim -c PlugInstall
-```
-
-3. **Update plugins**
-```sh
-vim -c PlugUpdate
-```
 
 ## System variables
 1. **$REASONSERVER** - path to `reason-language-server` file
@@ -136,3 +136,33 @@ vim -c PlugUpdate
     - `S<to>`
 - run **prettier**
     - `<leader>p`
+
+## Plugins description
+- `scrooloose/nerdtree` - vim file tree
+- `vim-airline/vim-airline` - extra menu (bottom bar) with usful informations
+- `ryanoasis/vim-devicons` - extra icons for `vim-airline`
+- `wakatime/vim-wakatime` - time managment plugin for [wakatime](https://wakatime.com)
+- `tpope/vim-fugitive` - plugin for git integration
+- `Valloric/YouCompleteMe` - multilanguages server for code completion
+- `w0rp/ale` - code completion, fixing, linting for errors and warnings
+- `prettier/vim-prettier` - plugin for auto formating code
+- `markvincze/panda-vim` - [panda](https://panda.siamak.work/) syntax in vim
+- `skielbasa/vim-material-monokai` - vim sytax plagin based on `material-monokai`
+- `scrooloose/nerdcommenter` - plugin for commenting code
+- `Yggdroot/indentLine` - showing lines indentation
+- `Raimondi/delimitMate` - autobracketing
+- `tpope/vim-surround` - for brackets and surroundings management
+- `racer-rust/vim-racer` - `racer` integration for vim only for extra completion informations
+- `rust-lang/rust.vim` - `rust` syntax in vim
+- `Chiel92/vim-autoformat` - plugin for auto rust formating
+- `pangloss/vim-javascript` - `javascript` sytax in vim
+- `jelera/vim-javascript-syntax` - `javascript` sytax in vim
+- `othree/html5.vim` - `html` sytax in vim
+- `ap/vim-css-color` - displaying css color in terminal
+- `leafgarland/typescript-vim` - `typescript` sytax in vim
+- `mxw/vim-jsx` - `jsx` sytax in vim
+- `peitalin/vim-jsx-typescript` - `tsx` sytax in vim
+- `reasonml-editor/vim-reason-plus` - `reasonML` sytax in vim
+- `autozimu/LanguageClient-neovim` - `reasonML` language server for code completion
+- `elzr/vim-json` - `json` sytax in vim
+

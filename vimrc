@@ -20,7 +20,7 @@ call plug#begin('~/.vim/bundle')
     \}
     Plug 'prettier/vim-prettier', {
     \ 'do': 'npm install',
-    \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
     \}
 
     " Syntax
@@ -58,9 +58,6 @@ call plug#begin('~/.vim/bundle')
 
 call plug#end()
 
-" basic configuration
-    set shell=sh
-
 " turn on syntax
     syntax on
     colorscheme panda
@@ -73,6 +70,7 @@ call plug#end()
     set secure
 
 " Basic setup
+    set shell=sh
     set binary
     set noeol
     set history=700
@@ -164,7 +162,7 @@ call plug#end()
         let g:formatdef_rustfmt = '"rustfmt"'
         let g:formatters_rust = ['rustfmt']
 
-    " # vim-reason-plus
+    " # LanguageClient
         let g:LanguageClient_serverCommands = {
             \ 'reason': ['$REASONSERVER']
             \ }
