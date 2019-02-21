@@ -2,21 +2,26 @@
 call plug#begin('~/.vim/bundle')
 
     " Vim functionality
-    Plug 'w0rp/ale', {
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
-    \}
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
     Plug 'wakatime/vim-wakatime'
-    " Plug 'Valloric/YouCompleteMe', {
-    " \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-    " \ 'for': 'rust'
-    " \}
-    Plug 'ryanoasis/vim-devicons'
 
     " Git
-    Plug 'tpope/vim-fugitive'
+    " Plug 'tpope/vim-fugitive'
+
+    " Code completion, linting and fixing
+    Plug 'Valloric/YouCompleteMe', {
+    \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
+    \ 'for': 'rust'
+    \}
+    Plug 'w0rp/ale', {
+    \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+    \}
+    Plug 'prettier/vim-prettier', {
+    \ 'do': 'npm install',
+    \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+    \}
 
     " Syntax
     Plug 'markvincze/panda-vim'
@@ -25,9 +30,6 @@ call plug#begin('~/.vim/bundle')
     Plug 'Yggdroot/indentLine'
     Plug 'Raimondi/delimitMate'
     Plug 'tpope/vim-surround'
-    Plug 'prettier/vim-prettier', {
-    \ 'do': 'npm install',
-    \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
     " Rust plugins
     Plug 'racer-rust/vim-racer', { 'for': 'rust'}
@@ -35,21 +37,21 @@ call plug#begin('~/.vim/bundle')
     Plug 'Chiel92/vim-autoformat', { 'for': 'rust'}
     
     " Frontend plugins
-    Plug 'pangloss/vim-javascript'
-    Plug 'jelera/vim-javascript-syntax'
-    Plug 'othree/html5.vim'
-    Plug 'ap/vim-css-color'
-    Plug 'leafgarland/typescript-vim'
-    Plug 'mxw/vim-jsx'
-    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json']}
+    Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json']}
+    Plug 'othree/html5.vim', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss']}
+    Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss']}
+    Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json']}
+    Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json']}
+    Plug 'peitalin/vim-jsx-typescript', { 'for': ['javascript', 'typescript', 'json']}
 
     " ReasonML
-    Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason'}
+    Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason']}
     Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
-    \ 'for': 'reason'
-    \ }
+    \ 'for': ['reason']
+    \}
 
     " JSON
     Plug 'elzr/vim-json', { 'for': ['json'] }
@@ -70,31 +72,36 @@ call plug#end()
     set exrc
     set secure
 
-" basic setup
+" Basic setup
     set binary
     set noeol
     set history=700
     set autoread
     set ruler
-    set hlsearch
-    set incsearch
     set t_Co=256
     set number
     set backspace=indent,eol,start
     filetype plugin on
+
+" Searching
+    set hlsearch
+    set incsearch
+    set ignorecase
+    set smartcase
 
 " Indentation
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
     set expandtab
+    set smarttab
     set autoindent
 
 " Enable clipboard
     set clipboard=unnamedplus
 
 " Variable for Rust completion
-let g:ycm_rust_src_path = $RUST_SRC_PATH
+    let g:ycm_rust_src_path = $RUST_SRC_PATH
 
 " Plugins
 
@@ -124,6 +131,7 @@ let g:ycm_rust_src_path = $RUST_SRC_PATH
 
     " # Racer
         let g:racer_cmd = $RACER_SRC_PATH
+        let g:racer_experimental_completer = 1
 
     " # Syntastic
         set statusline+=%#warningmsg#
@@ -145,6 +153,8 @@ let g:ycm_rust_src_path = $RUST_SRC_PATH
         \}
         let g:ale_fix_on_save = 1
         let g:ale_echo_cursor = 0
+        let g:airline#extensions#ale#enabled = 1
+        let g:ale_rust_cargo_use_check = 1
 
     " # devicons
         let g:airline_powerline_fonts = 1"
@@ -182,4 +192,6 @@ let g:ycm_rust_src_path = $RUST_SRC_PATH
     map <C-a> :vsplit<cr>
     " prettier with Ale
     map <C-f> :ALEFix<CR>
-
+    " use Ctrl-k and Ctrl-j to jump up and down between errors
+    nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-j> <Plug>(ale_next_wrap)

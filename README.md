@@ -5,7 +5,7 @@ Configuration is made mainly for:
 
 ## List of content
 - [Installation](#installation)
-    - [Rust racer installation for you complete me](#youcompleteme-for-rust)
+    - [Setting up Rust for VIM](#rust-setup-with-youcompleteme-and-ale)
     - [Setting up ReasonML language server](#reasonml-language-server-setup)
 - [Update](#update)
 - [System variables](#system-variables)
@@ -30,25 +30,43 @@ sh ./install.sh
 vim -c PlugInstall
 ```
 
-### YouCompleteMe for Rust
-1. Install nightly build
-2. Install racer:
+## Rust setup with `YouCompleteMe` and `ALE`
+1. Install `Rust` with `rustup`
+2. Install nightly build
+```sh
+rustup toolchain add nightly
+```
+3. Install racer:
 ```sh
 cargo +nightly install racer
 ```
-3. Add racer to PATH
-    - $HOME/.cargo/bin/racer
-4. Add RUST_SRC_PATH to PATH
-    - /lib/rustlib/src/rust/src
-5. Vim-Plug should run installation with racer completer if not: 
+4. Add RUST_SRC_PATH variable
+```bash
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
+```
+5. Vim-Plug should run installation with racer completer if not:
 6. Run YCM installation with Rust parameter manually
 ```sh
 ./install.py --racer-completer
 ```
+7. Add RACER_SRC_PATH
+```bash
+export RACER_SRC_PATH=$HOME/.cargo/bin/racer
+```
+8. Add rust-src
+```sh
+rustup component add rust-src
+```
+9. Add rustfmt
+```sh
+rustup component add rustfmt
+```
+10. For Rust errors and warnings `vim` needs `ALE` plugin
+11. For completion details as function interface use `vim-racer` plugin with <C-x><C-o> in insert mode.
 
-### ReasonML language server setup
+## ReasonML language server setup
 1. Get Language server:
-    1.  [Instruction website](https://github.com/jaredly/reason-language-server#vim)
+    1. [Instruction website](https://github.com/jaredly/reason-language-server#vim)
     2. [Download website](https://github.com/jaredly/reason-language-server/releases)
     3. Place *reason-language-server.exe* in your dedicated directory (yes it's *.exe* even for macos and linux)
     4. Set *$REASONSERVER* system variable with path to server
@@ -73,8 +91,10 @@ vim -c PlugUpdate
 ```
 
 ## System variables
-1. **$REASONSERVER** - path to reason-language-server file
-2. **$NERDTREE_WIDTH** - NERDTree width
+1. **$REASONSERVER** - path to `reason-language-server` file
+2. **$NERDTREE_WIDTH** - `NERDTree` width
+3. $RUST_SRC_PATH - path to `Rust` lib
+4. $RACER_SRC_PATH - path to `Racer` executable
 
 ## Useful vim commands
 ### Legend
