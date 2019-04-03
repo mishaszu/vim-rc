@@ -13,7 +13,7 @@ call plug#begin('~/.vim/bundle')
     " Code completion, linting and fixing
     Plug 'Valloric/YouCompleteMe', {
     \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-    \ 'for': 'rust'
+    \ 'for': ['rust']
     \}
     Plug 'w0rp/ale', {
     \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
@@ -24,6 +24,7 @@ call plug#begin('~/.vim/bundle')
     \}
 
     " Syntax
+    Plug 'vim-syntastic/syntastic'
     Plug 'markvincze/panda-vim'
     Plug 'skielbasa/vim-material-monokai'
     Plug 'scrooloose/nerdcommenter'
@@ -88,9 +89,9 @@ call plug#end()
     set smartcase
 
 " Indentation
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
+    set tabstop=2
+    set softtabstop=2
+    set shiftwidth=2
     set expandtab
     set smarttab
     set autoindent
@@ -150,7 +151,7 @@ call plug#end()
         \   'javascript': ['prettier', 'eslint']
         \}
         let g:ale_fix_on_save = 1
-        let g:ale_echo_cursor = 0
+        let g:ale_echo_cursor = 1
         let g:airline#extensions#ale#enabled = 1
         let g:ale_rust_cargo_use_check = 1
 
@@ -173,8 +174,8 @@ call plug#end()
         let g:NERDTrimTrailingWhitespace = 1
 
     " # prettier
-        let g:prettier#config#tab_width = 4
-        let g:prettier#config#print_width = 120
+        let g:prettier#config#tab_width = 2
+        let g:prettier#config#print_width = 80
         let g:prettier#config#single_quote = 'true'
         let g:prettier#config#bracket_spacing = 'true'
         let g:prettier#exec_cmd_async = 1
