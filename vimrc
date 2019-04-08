@@ -190,15 +190,22 @@ call plug#end()
   " swicth to right VIM window
   nmap <silent> <A-Right> :wincmd l<CR>
   " next NERDTree tab
-  map <C-l> :tabn<CR>
+  map <silent> <C-l> :tabn<CR>
   " previous NERDTree tab
-  map <C-h> :tabp<CR>
+  map <silent> <C-h> :tabp<CR>
   " toggle NERDTree open/close
   map <C-n> :NERDTreeToggle<CR>
   " split window vertically
   map <C-a> :vsplit<cr>
+  " split window horizontally
+  nmap <C-q> :split<CR>
   " prettier with Ale
   map <C-f> :ALEFix<CR>
+  " close file with save
+  nmap <silent> <C-x> :x<CR>
+  " save file
+  nmap <C-s> :w<CR>
   " use Ctrl-k and Ctrl-j to jump up and down between errors
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
