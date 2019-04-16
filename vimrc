@@ -6,6 +6,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'ryanoasis/vim-devicons'
   Plug 'wakatime/vim-wakatime'
+  Plug 'mattn/emmet-vim'
 
   " Git
   " Plug 'tpope/vim-fugitive'
@@ -81,6 +82,7 @@ call plug#end()
   set number
   set backspace=indent,eol,start
   filetype plugin on
+  set omnifunc=syntaxcomplete#Complete
 
 " Searching
   set hlsearch
@@ -101,6 +103,9 @@ call plug#end()
 
 " Variable for Rust completion
   let g:ycm_rust_src_path = $RUST_SRC_PATH
+
+" close preview window from omnicompletion
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " Plugins
 
@@ -201,8 +206,6 @@ call plug#end()
   nmap <C-q> :split<CR>
   " prettier with Ale
   map <C-f> :ALEFix<CR>
-  " close file with save
-  nmap <silent> <C-x> :x<CR>
   " save file
   nmap <C-s> :w<CR>
   " use Ctrl-k and Ctrl-j to jump up and down between errors
