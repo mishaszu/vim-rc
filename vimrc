@@ -35,6 +35,13 @@ call plug#begin('~/.vim/bundle')
   Plug 'thiagoalessio/rainbow_levels.vim'
   Plug 'luochen1990/rainbow'
   Plug 'jaxbot/semantic-highlight.vim'
+  " new syntax
+  Plug 'sainnhe/vim-color-forest-night'
+  Plug 'connorholyday/vim-snazzy'
+  Plug 'srcery-colors/srcery-vim'
+  Plug 'miconda/lucariox.vim'
+  Plug 'Zabanaa/neuromancer.vim'
+  Plug 'rakr/vim-one'
 
   " Rust plugins
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
