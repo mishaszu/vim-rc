@@ -17,7 +17,7 @@ call plug#begin('~/.vim/bundle')
   \ 'for': ['rust']
   \}
   Plug 'w0rp/ale', {
-  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
@@ -29,26 +29,29 @@ call plug#begin('~/.vim/bundle')
   Plug 'markvincze/panda-vim'
   Plug 'skielbasa/vim-material-monokai'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'Yggdroot/indentLine'
+  " Plug 'Yggdroot/indentLine'
   Plug 'Raimondi/delimitMate'
   Plug 'tpope/vim-surround'
+  Plug 'thiagoalessio/rainbow_levels.vim'
+  Plug 'luochen1990/rainbow'
+  Plug 'jaxbot/semantic-highlight.vim'
 
   " Rust plugins
-  Plug 'racer-rust/vim-racer', { 'for': 'rust'}
-  Plug 'rust-lang/rust.vim', { 'for': 'rust'}
-  Plug 'Chiel92/vim-autoformat', { 'for': 'rust'}
+  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'Chiel92/vim-autoformat', { 'for': 'rust' }
   
   " Frontend plugins
-  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json']}
-  Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json']}
-  Plug 'othree/html5.vim', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss']}
-  Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss']}
-  Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json']}
-  Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json']}
-  Plug 'peitalin/vim-jsx-typescript', { 'for': ['javascript', 'typescript', 'json']}
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'othree/html5.vim', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
+  Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
+  Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'peitalin/vim-jsx-typescript', { 'for': ['javascript', 'typescript', 'json'] }
 
   " ReasonML
-  Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason']}
+  Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
   Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh',
@@ -57,6 +60,15 @@ call plug#begin('~/.vim/bundle')
 
   " JSON
   Plug 'elzr/vim-json', { 'for': ['json'] }
+
+  " Clojure
+  Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
+  Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+  Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
+  Plug 'guns/vim-sexp', { 'for': ['clojure'] }
+  Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
+  Plug 'guns/vim-slamhound', { 'for': ['clojure'] }
+  Plug 'dgrnbrg/vim-redl', { 'for': ['clojure'] }
 
 call plug#end()
 
@@ -83,6 +95,8 @@ call plug#end()
   set backspace=indent,eol,start
   filetype plugin on
   set omnifunc=syntaxcomplete#Complete
+  set clipboard=unnamed
+  set mouse=v
 
 " Searching
   set hlsearch
@@ -150,10 +164,10 @@ call plug#end()
   " # ALE
     let g:ale_completion_enabled = 1
     let g:ale_fixers = {
-    \   'css': ['prettier'],
-    \   'scss': ['prettier'],
-    \   'typescript': ['prettier', 'tslint'],
-    \   'javascript': ['prettier', 'eslint']
+    \ 'css': ['prettier'],
+    \ 'scss': ['prettier'],
+    \ 'typescript': ['prettier', 'tslint'],
+    \ 'javascript': ['prettier', 'eslint']
     \}
     let g:ale_fix_on_save = 1
     let g:ale_echo_cursor = 1
@@ -170,8 +184,8 @@ call plug#end()
 
   " # LanguageClient
     let g:LanguageClient_serverCommands = {
-        \ 'reason': ['$REASONSERVER']
-        \ }
+      \ 'reason': ['$REASONSERVER']
+      \ }
 
   " # nerdcommenter
     let g:NERDSpaceDelims = 1
@@ -184,6 +198,46 @@ call plug#end()
     let g:prettier#config#single_quote = 'true'
     let g:prettier#config#bracket_spacing = 'true'
     let g:prettier#exec_cmd_async = 1
+
+  " # rainbow_levels
+    hi! RainbowLevel0 ctermbg=239
+    hi! RainbowLevel1 ctermbg=238
+    hi! RainbowLevel2 ctermbg=237
+    hi! RainbowLevel3 ctermbg=236
+    hi! RainbowLevel4 ctermbg=235
+    hi! RainbowLevel5 ctermbg=234
+    hi! RainbowLevel6 ctermbg=233
+    hi! RainbowLevel7 ctermbg=232
+    hi! RainbowLevel8 ctermbg=231
+    au FileType javascript,python,php,xml,yaml,typescript,clojure :RainbowLevelsOn
+
+  " # semantic-highlight
+    let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
+  
+  " # rainbow_parentheses 
+    let g:rainbow_active = 1
+    let g:rainbow_conf = {
+    \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \	'operators': '_,_',
+    \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \	'separately': {
+    \		'*': {},
+    \		'tex': {
+    \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \		},
+    \		'lisp': {
+    \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \		},
+    \		'vim': {
+    \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \		},
+    \		'html': {
+    \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \		},
+    \		'css': 0,
+    \	}
+    \}
 
 " Keymappings
   " switch up VIM window
@@ -211,4 +265,39 @@ call plug#end()
   " use Ctrl-k and Ctrl-j to jump up and down between errors
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  " search under cursosr
+  vnoremap // y/<C-R>"<CR>
+  " toggle semantic-highlight
+  nnoremap <Leader>s :SemanticHighlightToggle<cr>
 
+" Clojure funcions
+function! IsFireplaceConnected()
+  try
+    return has_key(fireplace#platform(), 'connection')
+  catch /Fireplace: :Connect to a REPL or install classpath.vim/
+    return 0 " false
+  endtry
+endfunction
+
+function! NreplStatusLine()
+  if IsFireplaceConnected()
+    return 'nREPL Connected'
+  else
+    return 'No nREPL Connection'
+  endif
+endfunction
+
+function! SetBasicStatusLine()
+  set statusline=%f   " path to file
+  set statusline+=\   " separator
+  set statusline+=%m  " modified flag
+  set statusline+=%=  " switch to right side
+  set statusline+=%y  " filetype of file
+endfunction
+
+autocmd Filetype clojure nnoremap <buffer> <leader>sh :Slamhound<cr>
+autocmd Filetype clojure imap <buffer> <Up> <Plug>clj_repl_uphist.
+autocmd Filetype clojure imap <buffer> <Down> <Plug>clj_repl_downhist.
+autocmd Filetype clojure call SetBasicStatusLine()
+autocmd Filetype clojure set statusline+=\ [%{NreplStatusLine()}]  " REPL connection status
+autocmd BufLeave *.cljs,*.clj,*.cljs.hl  call SetBasicStatusLine()
