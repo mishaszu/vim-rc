@@ -29,10 +29,9 @@ call plug#begin('~/.vim/bundle')
   Plug 'markvincze/panda-vim'
   Plug 'skielbasa/vim-material-monokai'
   Plug 'scrooloose/nerdcommenter'
-  " Plug 'Yggdroot/indentLine'
+  Plug 'Yggdroot/indentLine'
   Plug 'Raimondi/delimitMate'
   Plug 'tpope/vim-surround'
-  Plug 'thiagoalessio/rainbow_levels.vim'
   Plug 'luochen1990/rainbow'
   Plug 'jaxbot/semantic-highlight.vim'
   " new syntax
@@ -205,18 +204,6 @@ call plug#end()
     let g:prettier#config#single_quote = 'true'
     let g:prettier#config#bracket_spacing = 'true'
     let g:prettier#exec_cmd_async = 1
-
-  " # rainbow_levels
-    hi! RainbowLevel0 ctermbg=239
-    hi! RainbowLevel1 ctermbg=238
-    hi! RainbowLevel2 ctermbg=237
-    hi! RainbowLevel3 ctermbg=236
-    hi! RainbowLevel4 ctermbg=235
-    hi! RainbowLevel5 ctermbg=234
-    hi! RainbowLevel6 ctermbg=233
-    hi! RainbowLevel7 ctermbg=232
-    hi! RainbowLevel8 ctermbg=231
-    au FileType javascript,python,php,xml,yaml,typescript,clojure :RainbowLevelsOn
 
   " # semantic-highlight
     let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
