@@ -7,9 +7,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'ryanoasis/vim-devicons'
   Plug 'wakatime/vim-wakatime'
   Plug 'mattn/emmet-vim'
-
-  " Git
-  " Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive'
 
   " Code completion, linting and fixing
   Plug 'Valloric/YouCompleteMe', {
@@ -17,7 +15,7 @@ call plug#begin('~/.vim/bundle')
   \ 'for': ['rust']
   \}
   Plug 'w0rp/ale', {
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
@@ -33,14 +31,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'Raimondi/delimitMate'
   Plug 'tpope/vim-surround'
   Plug 'luochen1990/rainbow'
-  Plug 'jaxbot/semantic-highlight.vim'
-  " new syntax
-  Plug 'sainnhe/vim-color-forest-night'
-  Plug 'connorholyday/vim-snazzy'
-  Plug 'srcery-colors/srcery-vim'
-  Plug 'miconda/lucariox.vim'
-  Plug 'Zabanaa/neuromancer.vim'
-  Plug 'rakr/vim-one'
 
   " Rust plugins
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
@@ -179,6 +169,7 @@ call plug#end()
     let g:ale_echo_cursor = 1
     let g:airline#extensions#ale#enabled = 1
     let g:ale_rust_cargo_use_check = 1
+    set completeopt+=noinsert
 
   " # devicons
     let g:airline_powerline_fonts = 1"
@@ -205,9 +196,6 @@ call plug#end()
     let g:prettier#config#bracket_spacing = 'true'
     let g:prettier#exec_cmd_async = 1
 
-  " # semantic-highlight
-    let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
-  
   " # rainbow_parentheses 
     let g:rainbow_active = 1
     let g:rainbow_conf = {
