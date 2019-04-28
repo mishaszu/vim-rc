@@ -38,7 +38,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'Chiel92/vim-autoformat', { 'for': 'rust' }
   
   " Frontend plugins
-  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'othree/html5.vim', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
   Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
@@ -116,6 +115,9 @@ call plug#end()
 
 " close preview window from omnicompletion
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" set jsdoc's files as javascript
+  autocmd BufEnter *.jsdoc :setlocal filetype=javascript
 
 " Plugins
 
@@ -249,8 +251,6 @@ call plug#end()
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
-  " toggle semantic-highlight
-  nnoremap <Leader>s :SemanticHighlightToggle<cr>
 
 " Clojure funcions
 function! IsFireplaceConnected()
