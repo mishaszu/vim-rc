@@ -6,46 +6,49 @@ call plug#begin('~/.vim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'ryanoasis/vim-devicons'
   Plug 'wakatime/vim-wakatime'
-  Plug 'mattn/emmet-vim'
   Plug 'tpope/vim-fugitive'
 
-  " Code completion, linting and fixing
-  Plug 'Valloric/YouCompleteMe', {
-  \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-  \ 'for': ['rust']
-  \}
+  " Linting & Completion Plugins
   Plug 'w0rp/ale', {
-  \ 'for': ['typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
+  Plug 'Valloric/YouCompleteMe', {
+  \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
+  \ 'for': ['rust']
+  \}
 
-  " Syntax
-  Plug 'vim-syntastic/syntastic'
+  " Syntax Plugins
   Plug 'markvincze/panda-vim'
-  Plug 'skielbasa/vim-material-monokai'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Yggdroot/indentLine'
   Plug 'Raimondi/delimitMate'
   Plug 'tpope/vim-surround'
   Plug 'luochen1990/rainbow'
 
-  " Rust plugins
-  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-  Plug 'Chiel92/vim-autoformat', { 'for': 'rust' }
+  " Rust Plugins
+  Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
+  Plug 'racer-rust/vim-racer', { 'for': ['rust'] }
   
-  " Frontend plugins
+  " Javascript Plugins
   Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json'] }
-  Plug 'othree/html5.vim', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
-  Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
-  Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json'] }
+
+  " Typescript Plugins
+  Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'peitalin/vim-jsx-typescript', { 'for': ['javascript', 'typescript', 'json'] }
 
-  " ReasonML
+  " HTML Plugins
+  Plug 'mattn/emmet-vim', { 'for': ['html'] }
+  Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'typescript', 'json', 'css', 'scss'] }
+
+  "CSS Plugins
+  Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
+
+  " ReasonML Plugins
   Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
   Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
@@ -53,10 +56,10 @@ call plug#begin('~/.vim/bundle')
   \ 'for': ['reason']
   \}
 
-  " JSON
+  " JSON Plugins
   Plug 'elzr/vim-json', { 'for': ['json'] }
 
-  " Clojure
+  " Clojure Plugins
   Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
   Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
   Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
@@ -90,8 +93,8 @@ call plug#end()
   set backspace=indent,eol,start
   filetype plugin on
   set omnifunc=syntaxcomplete#Complete
-  set clipboard=unnamed
   set mouse=v
+  set clipboard=unnamed
 
 " Searching
   set hlsearch
@@ -106,12 +109,6 @@ call plug#end()
   set expandtab
   set smarttab
   set autoindent
-
-" Enable clipboard
-  set clipboard=unnamedplus
-
-" Variable for Rust completion
-  let g:ycm_rust_src_path = $RUST_SRC_PATH
 
 " close preview window from omnicompletion
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -148,19 +145,13 @@ call plug#end()
   " # Racer
     let g:racer_cmd = $RACER_SRC_PATH
     let g:racer_experimental_completer = 1
-
-  " # Syntastic
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+    au FileType rust nmap gd <Plug>(rust-def)
+    au FileType rust nmap gs <Plug>(rust-def-split)
+    au FileType rust nmap gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
   " # ALE
-    let g:ale_completion_enabled = 1
+    let g:ale_completion_enabled = 0
     let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ 'scss': ['prettier'],
@@ -176,15 +167,6 @@ call plug#end()
   " # devicons
     let g:airline_powerline_fonts = 1"
     set guifont=DroidSansMono_Nerd_Font:h11
-
-  " # vim-autoformat
-    let g:formatdef_rustfmt = '"rustfmt"'
-    let g:formatters_rust = ['rustfmt']
-
-  " # LanguageClient
-    let g:LanguageClient_serverCommands = {
-      \ 'reason': ['$REASONSERVER']
-      \ }
 
   " # nerdcommenter
     let g:NERDSpaceDelims = 1
@@ -252,7 +234,7 @@ call plug#end()
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
 
-" Clojure funcions
+" Clojure enviromnet
 function! IsFireplaceConnected()
   try
     return has_key(fireplace#platform(), 'connection')
