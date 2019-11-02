@@ -18,7 +18,7 @@ call plug#begin('~/.vim/bundle')
   \}
   Plug 'Valloric/YouCompleteMe', {
   \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-  \ 'for': ['rust']
+  \ 'for': ['rust', 'javascript', 'typescript']
   \}
 
   " Syntax Plugins
@@ -42,8 +42,9 @@ call plug#begin('~/.vim/bundle')
   Plug 'peitalin/vim-jsx-typescript', { 'for': ['javascript', 'typescript', 'json'] }
 
   " HTML Plugins
-  Plug 'mattn/emmet-vim', { 'for': ['html'] }
+  Plug 'mattn/emmet-vim'
   Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'typescript', 'json', 'css', 'scss'] }
+  Plug 'mustache/vim-mustache-handlebars'
 
   "CSS Plugins
   Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
@@ -58,15 +59,6 @@ call plug#begin('~/.vim/bundle')
 
   " JSON Plugins
   Plug 'elzr/vim-json', { 'for': ['json'] }
-
-  " Clojure Plugins
-  Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
-  Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
-  Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
-  Plug 'guns/vim-sexp', { 'for': ['clojure'] }
-  Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
-  Plug 'guns/vim-slamhound', { 'for': ['clojure'] }
-  Plug 'dgrnbrg/vim-redl', { 'for': ['clojure'] }
 
 call plug#end()
 
@@ -155,8 +147,9 @@ call plug#end()
     let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ 'scss': ['prettier'],
-    \ 'typescript': ['prettier', 'tslint'],
-    \ 'javascript': ['prettier', 'eslint']
+    \ 'typescript': ['prettier', 'eslint'],
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'html': ['prettier']
     \}
     let g:ale_fix_on_save = 1
     let g:ale_echo_cursor = 1
@@ -205,6 +198,9 @@ call plug#end()
     \	}
     \}
 
+  " # emmet
+  let g:user_emmet_leader_key=','
+
 " Keymappings
   " switch up VIM window
   nmap <silent> <A-Up> :wincmd k<CR>
@@ -214,6 +210,14 @@ call plug#end()
   nmap <silent> <A-Left> :wincmd h<CR>
   " swicth to right VIM window
   nmap <silent> <A-Right> :wincmd l<CR>
+  " switch up VIM window
+  nmap <silent> <A-k> :wincmd k<CR>
+  " switch to down VIM window
+  nmap <silent> <A-j> :wincmd j<CR>
+  " switch to left VIM window
+  nmap <silent> <A-h> :wincmd h<CR>
+  " swicth to right VIM window
+  nmap <silent> <A-l> :wincmd l<CR>
   " next NERDTree tab
   map <silent> <C-l> :tabn<CR>
   " previous NERDTree tab
@@ -234,34 +238,3 @@ call plug#end()
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
 
-" Clojure enviromnet
-function! IsFireplaceConnected()
-  try
-    return has_key(fireplace#platform(), 'connection')
-  catch /Fireplace: :Connect to a REPL or install classpath.vim/
-    return 0 " false
-  endtry
-endfunction
-
-function! NreplStatusLine()
-  if IsFireplaceConnected()
-    return 'nREPL Connected'
-  else
-    return 'No nREPL Connection'
-  endif
-endfunction
-
-function! SetBasicStatusLine()
-  set statusline=%f   " path to file
-  set statusline+=\   " separator
-  set statusline+=%m  " modified flag
-  set statusline+=%=  " switch to right side
-  set statusline+=%y  " filetype of file
-endfunction
-
-autocmd Filetype clojure nnoremap <buffer> <leader>sh :Slamhound<cr>
-autocmd Filetype clojure imap <buffer> <Up> <Plug>clj_repl_uphist.
-autocmd Filetype clojure imap <buffer> <Down> <Plug>clj_repl_downhist.
-autocmd Filetype clojure call SetBasicStatusLine()
-autocmd Filetype clojure set statusline+=\ [%{NreplStatusLine()}]  " REPL connection status
-autocmd BufLeave *.cljs,*.clj,*.cljs.hl  call SetBasicStatusLine()
