@@ -25,6 +25,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'markvincze/panda-vim'
   Plug 'sickill/vim-monokai'
   Plug 'mhartington/oceanic-next'
+  Plug 'dracula/vim'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Yggdroot/indentLine'
   Plug 'Raimondi/delimitMate'
@@ -66,8 +67,7 @@ call plug#end()
 
 " turn on syntax
   syntax on
-  " colorscheme panda
-  colorscheme OceanicNext
+  colorscheme dracula
 
 " file encoding
   set encoding=UTF-8
@@ -124,7 +124,7 @@ call plug#end()
     let g:javascript_conceal_prototype            = "¶"
     let g:javascript_conceal_static               = "•"
     let g:javascript_conceal_super                = "Ω"
-    let g:javascript_conceal_arrow_function       = "⇒"
+    " let g:javascript_conceal_arrow_function       = "⇒"
 
   " language server
     let g:LanguageClient_serverCommands = {
