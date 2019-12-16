@@ -18,11 +18,13 @@ call plug#begin('~/.vim/bundle')
   \}
   Plug 'Valloric/YouCompleteMe', {
   \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-  \ 'for': ['rust', 'javascript', 'typescript']
+  \ 'for': ['rust']
   \}
 
   " Syntax Plugins
   Plug 'markvincze/panda-vim'
+  Plug 'sickill/vim-monokai'
+  Plug 'mhartington/oceanic-next'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Yggdroot/indentLine'
   Plug 'Raimondi/delimitMate'
@@ -34,8 +36,16 @@ call plug#begin('~/.vim/bundle')
   Plug 'racer-rust/vim-racer', { 'for': ['rust'] }
   
   " Javascript Plugins
-  Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json'] }
+  " Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript', 'json']}
   Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'othree/javascript-libraries-syntax.vim', {'for' : ['javascript', 'typescript']}
+  Plug 'othree/yajs.vim', {'for' : ['javascript', 'typescript']}
+  Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ 'for': ['javascript', 'typescript']
+      \ }
 
   " Typescript Plugins
   Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json'] }
@@ -49,14 +59,6 @@ call plug#begin('~/.vim/bundle')
   "CSS Plugins
   Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
 
-  " ReasonML Plugins
-  Plug 'reasonml-editor/vim-reason-plus', { 'for': ['reason'] }
-  Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ 'for': ['reason']
-  \}
-
   " JSON Plugins
   Plug 'elzr/vim-json', { 'for': ['json'] }
 
@@ -64,7 +66,8 @@ call plug#end()
 
 " turn on syntax
   syntax on
-  colorscheme panda
+  " colorscheme panda
+  colorscheme OceanicNext
 
 " file encoding
   set encoding=UTF-8
@@ -101,6 +104,7 @@ call plug#end()
   set expandtab
   set smarttab
   set autoindent
+  set conceallevel=1
 
 " close preview window from omnicompletion
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -109,6 +113,24 @@ call plug#end()
   autocmd BufEnter *.jsdoc :setlocal filetype=javascript
 
 " Plugins
+
+  " vim-javascrpit
+    let g:javascript_conceal_function             = "ƒ"
+    let g:javascript_conceal_null                 = "ø"
+    let g:javascript_conceal_this                 = "@"
+    let g:javascript_conceal_return               = "⇚"
+    let g:javascript_conceal_undefined            = "¿"
+    let g:javascript_conceal_NaN                  = "ℕ"
+    let g:javascript_conceal_prototype            = "¶"
+    let g:javascript_conceal_static               = "•"
+    let g:javascript_conceal_super                = "Ω"
+    let g:javascript_conceal_arrow_function       = "⇒"
+
+  " language server
+    let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio']
+    \ }
 
   " # Nerdtree
     let g:NERDTreeWinPos = 'right'
@@ -143,7 +165,7 @@ call plug#end()
     au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
   " # ALE
-    let g:ale_completion_enabled = 0
+    let g:ale_completion_enabled = 1
     let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ 'scss': ['prettier'],
@@ -237,4 +259,15 @@ call plug#end()
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
+
+
+    "Now, <leader>l opens a menu showing all possible things you can do with language server.
+    "K shows the available documentation when possible
+    "gd jumps to where the symbol under the cursor has been first defined
+    ""<leader>r rename the symbol under cursor
+
+nnoremap <leader>l :call LanguageClient_contextMenu()<CR>
+nnoremap K :call LanguageClient#textDocument_hover()<CR>
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
 
