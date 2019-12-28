@@ -21,7 +21,7 @@ call plug#begin('~/.vim/bundle')
   \}
 
   Plug 'ycm-core/YouCompleteMe', {
-  \  'do': './install.py',
+  \  'do': './install.py --ts-completer',
   \  'for': ['javascript', 'typescript']
   \}
 
