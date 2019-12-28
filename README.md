@@ -3,6 +3,9 @@ Configuration is made mainly for:
 - Front-End Development (with Javascript, Typescript and ReasonML)
 - Rust Development
 
+## Font for windows
+Windows uses ProggyCleatTT NF, it's only font I found work with Powerline and vim so far.
+
 ## List of content
 - [Installation](#installation)
     - [Setting up Rust for VIM](#rust-setup-with-youcompleteme-and-ale)
@@ -136,33 +139,4 @@ rustup component add rustfmt
     - `S<to>`
 - run **prettier**
     - `<leader>p`
-
-## Plugins description
-- `scrooloose/nerdtree` - vim file tree
-- `vim-airline/vim-airline` - extra menu (bottom bar) with usful informations
-- `ryanoasis/vim-devicons` - extra icons for `vim-airline`
-- `wakatime/vim-wakatime` - time managment plugin for [wakatime](https://wakatime.com)
-- `tpope/vim-fugitive` - plugin for git integration
-- `Valloric/YouCompleteMe` - multilanguages server for code completion
-- `w0rp/ale` - code completion, fixing, linting for errors and warnings
-- `prettier/vim-prettier` - plugin for auto formating code
-- `markvincze/panda-vim` - [panda](https://panda.siamak.work/) syntax in vim
-- `skielbasa/vim-material-monokai` - vim sytax plagin based on `material-monokai`
-- `scrooloose/nerdcommenter` - plugin for commenting code
-- `Yggdroot/indentLine` - showing lines indentation
-- `Raimondi/delimitMate` - autobracketing
-- `tpope/vim-surround` - for brackets and surroundings management
-- `racer-rust/vim-racer` - `racer` integration for vim only for extra completion informations
-- `rust-lang/rust.vim` - `rust` syntax in vim
-- `Chiel92/vim-autoformat` - plugin for auto rust formating
-- `pangloss/vim-javascript` - `javascript` sytax in vim
-- `jelera/vim-javascript-syntax` - `javascript` sytax in vim
-- `othree/html5.vim` - `html` sytax in vim
-- `ap/vim-css-color` - displaying css color in terminal
-- `leafgarland/typescript-vim` - `typescript` sytax in vim
-- `mxw/vim-jsx` - `jsx` sytax in vim
-- `peitalin/vim-jsx-typescript` - `tsx` sytax in vim
-- `reasonml-editor/vim-reason-plus` - `reasonML` sytax in vim
-- `autozimu/LanguageClient-neovim` - `reasonML` language server for code completion
-- `elzr/vim-json` - `json` sytax in vim
 

@@ -1,4 +1,5 @@
-" init all plugins with vim-plug
+"""---PLUGINS CONFIG---"
+"""---VIM PLUG---"
 call plug#begin('~/.vim/bundle')
 
   " Vim functionality
@@ -7,30 +8,31 @@ call plug#begin('~/.vim/bundle')
   Plug 'ryanoasis/vim-devicons'
   Plug 'wakatime/vim-wakatime'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-commentary'
 
   " Linting & Completion Plugins
   Plug 'w0rp/ale', {
   \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
+
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
-  Plug 'Valloric/YouCompleteMe', {
-  \ 'do': './install.py --racer-completer && ./install.py --skip-build --ts-completer',
-  \ 'for': ['rust']
+
+  Plug 'ycm-core/YouCompleteMe', {
+  \  'do': './install.py',
+  \  'for': ['javascript', 'typescript']
   \}
 
   " Syntax Plugins
   Plug 'markvincze/panda-vim'
   Plug 'sickill/vim-monokai'
-  Plug 'mhartington/oceanic-next'
   Plug 'dracula/vim'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'Yggdroot/indentLine'
-  Plug 'Raimondi/delimitMate'
-  Plug 'tpope/vim-surround'
-  Plug 'luochen1990/rainbow'
+  Plug 'Yggdroot/indentLine' "Indendation
+  Plug 'Raimondi/delimitMate' "Matching closing brackets
+  Plug 'tpope/vim-surround' "Managing surrondings like brackets
+  Plug 'luochen1990/rainbow' "Coloring brackets
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
@@ -42,11 +44,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'othree/javascript-libraries-syntax.vim', {'for' : ['javascript', 'typescript']}
   Plug 'othree/yajs.vim', {'for' : ['javascript', 'typescript']}
-  Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ 'for': ['javascript', 'typescript']
-      \ }
 
   " Typescript Plugins
   Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json'] }
@@ -65,97 +62,68 @@ call plug#begin('~/.vim/bundle')
 
 call plug#end()
 
-" turn on syntax
-  syntax on
-  colorscheme dracula
+"""---GENERAL CONFIGURATION---"""
+  "syntax
+    syntax on "enable syntax highlight
+    set t_Co=256 "set color scheme
+    colorscheme dracula
+    filetype plugin on
+  "config
+    set encoding=UTF-8
+    set exrc "enable .vimrc file per project
+    set secure
+    set shell=sh
+    set binary
+    set noeol "No extra line on end of file
+    set history=700 "commands history
+    set autoread "Automatically re-read ﬁles if unmodiﬁed inside Vim
+    set hidden 
+    set ruler "Always show cursor position
+    set number "Show line numbers
+    set relativenumber "Show relative cursor line number position
+    set backspace=indent,eol,start "allow backspace between lines and over indentation
+    set mouse=v
+    set clipboard=unnamed
+    set conceallevel=1
+    set visualbell "Flesh screen instead of running bell sound
+    set cursorline "Mark cursor line
+    set title "set window title as current file name
+    set scrolloff=5 "number of line above and under cursor
+    set confirm "display confirm modal when closing unsave file
+  "search
+    set hlsearch "highlight search
+    set incsearch "incremental search
+    set ignorecase "ignore case sensitive
+    set smartcase "ignore case sensitive till Upper case used
+  "indent
+    set tabstop=4 "tab as 4 spaces
+    set softtabstop=4
+    set shiftwidth=4 "when indent with > insert 4 spaces
+    set expandtab "on pressing tab insert spaces
+    set smarttab
+    set autoindent
+  "omnicompletion
+    set omnifunc=syntaxcomplete#Complete
+    " close preview window from omnicompletion
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    " set jsdoc's files as javascript
+    autocmd BufEnter *.jsdoc :setlocal filetype=javascript
+  "set directory for swap, backup and history files
+    set directory=$HOME/.vim/swp//
+    set backupdir=$HOME/.vim/backup//
+    set undodir=$HOME/.vim/undodir
 
-" file encoding
-  set encoding=UTF-8
-
-" enable vim for single projects
-  set exrc
-  set secure
-
-" Basic setup
-  set shell=sh
-  set binary
-  set noeol
-  set history=700
-  set autoread
-  set ruler
-  set t_Co=256
-  set number
-  set backspace=indent,eol,start
-  filetype plugin on
-  set omnifunc=syntaxcomplete#Complete
-  set mouse=v
-  set clipboard=unnamed
-
-" Searching
-  set hlsearch
-  set incsearch
-  set ignorecase
-  set smartcase
-
-" Indentation
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-  set smarttab
-  set autoindent
-  set conceallevel=1
-
-" close preview window from omnicompletion
-  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" set jsdoc's files as javascript
-  autocmd BufEnter *.jsdoc :setlocal filetype=javascript
-
-" Plugins
-
-  " vim-javascrpit
-    let g:javascript_conceal_function             = "ƒ"
-    let g:javascript_conceal_null                 = "ø"
-    let g:javascript_conceal_this                 = "@"
-    let g:javascript_conceal_return               = "⇚"
-    let g:javascript_conceal_undefined            = "¿"
-    let g:javascript_conceal_NaN                  = "ℕ"
-    let g:javascript_conceal_prototype            = "¶"
-    let g:javascript_conceal_static               = "•"
-    let g:javascript_conceal_super                = "Ω"
-    " let g:javascript_conceal_arrow_function       = "⇒"
-
-  " language server
-    let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio']
-    \ }
-
+"""---PLUGINS CONFIGURATION---"""
   " # Nerdtree
     let g:NERDTreeWinPos = 'right'
     let g:NERDTreeWinSize=$NERDTREE_WIDTH
-    let g:NERDTreeDirArrowExpandable = '▸'
-    let g:NERDTreeDirArrowCollapsible = '▾'
+    let g:NERDTreeDirArrowExpandable = '↑'
+    let g:NERDTreeDirArrowCollapsible = '↓'
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-    let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
   " # Rust.vim
     let g:rustfmt_autosave = 1
-
   " # Racer
     let g:racer_cmd = $RACER_SRC_PATH
     let g:racer_experimental_completer = 1
@@ -163,9 +131,8 @@ call plug#end()
     au FileType rust nmap gs <Plug>(rust-def-split)
     au FileType rust nmap gx <Plug>(rust-def-vertical)
     au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
   " # ALE
-    let g:ale_completion_enabled = 1
+    let g:ale_completion_enabled = 0
     let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ 'scss': ['prettier'],
@@ -178,23 +145,22 @@ call plug#end()
     let g:airline#extensions#ale#enabled = 1
     let g:ale_rust_cargo_use_check = 1
     set completeopt+=noinsert
-
+    "let g:ale_sign_error = '>'
+    "let g:ale_sign_warning = '-'
+    "highlight ALEErrorSign ctermbg=NONE ctermfg=red
+    "highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
   " # devicons
     let g:airline_powerline_fonts = 1"
-    set guifont=DroidSansMono_Nerd_Font:h11
-
   " # nerdcommenter
     let g:NERDSpaceDelims = 1
     let g:NERDCommentEmptyLines = 1
     let g:NERDTrimTrailingWhitespace = 1
-
   " # prettier
     let g:prettier#config#tab_width = 2
     let g:prettier#config#print_width = 80
     let g:prettier#config#single_quote = 'true'
     let g:prettier#config#bracket_spacing = 'true'
     let g:prettier#exec_cmd_async = 1
-
   " # rainbow_parentheses 
     let g:rainbow_active = 1
     let g:rainbow_conf = {
@@ -219,11 +185,10 @@ call plug#end()
     \		'css': 0,
     \	}
     \}
-
   " # emmet
   let g:user_emmet_leader_key=','
 
-" Keymappings
+"""---KEY MAPPINGS---"""
   " switch up VIM window
   nmap <silent> <A-Up> :wincmd k<CR>
   " switch to down VIM window
@@ -259,15 +224,3 @@ call plug#end()
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
-
-
-    "Now, <leader>l opens a menu showing all possible things you can do with language server.
-    "K shows the available documentation when possible
-    "gd jumps to where the symbol under the cursor has been first defined
-    ""<leader>r rename the symbol under cursor
-
-nnoremap <leader>l :call LanguageClient_contextMenu()<CR>
-nnoremap K :call LanguageClient#textDocument_hover()<CR>
-nnoremap gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
-
