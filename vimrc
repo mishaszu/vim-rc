@@ -20,10 +20,11 @@ call plug#begin('~/.vim/bundle')
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
 
-  Plug 'ycm-core/YouCompleteMe', {
-  \  'do': './install.py --ts-completer',
-  \  'for': ['javascript', 'typescript']
-  \}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'ycm-core/YouCompleteMe', {
+  " \  'do': './install.py --ts-completer',
+  " \  'for': ['javascript', 'typescript']
+  " \}
 
   " Syntax Plugins
   Plug 'markvincze/panda-vim'
@@ -108,10 +109,6 @@ call plug#end()
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
     " set jsdoc's files as javascript
     autocmd BufEnter *.jsdoc :setlocal filetype=javascript
-  "set directory for swap, backup and history files
-    set directory=$HOME/.vim/swp//
-    set backupdir=$HOME/.vim/backup//
-    set undodir=$HOME/.vim/undodir
 
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree

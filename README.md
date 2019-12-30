@@ -140,3 +140,7 @@ rustup component add rustfmt
 - run **prettier**
     - `<leader>p`
 
+Update Coc:
+```
+:CocUpdate
+```
