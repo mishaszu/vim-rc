@@ -9,6 +9,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'wakatime/vim-wakatime'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
+  Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
   " Linting & Completion Plugins
   Plug 'w0rp/ale', {
@@ -21,10 +22,6 @@ call plug#begin('~/.vim/bundle')
   \}
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " Plug 'ycm-core/YouCompleteMe', {
-  " \  'do': './install.py --ts-completer',
-  " \  'for': ['javascript', 'typescript']
-  " \}
 
   " Syntax Plugins
   Plug 'markvincze/panda-vim'
@@ -37,10 +34,9 @@ call plug#begin('~/.vim/bundle')
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
-  Plug 'racer-rust/vim-racer', { 'for': ['rust'] }
+  " Plug 'racer-rust/vim-racer', { 'for': ['rust'] }
   
   " Javascript Plugins
-  " Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript', 'json']}
   Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json'] }
   Plug 'othree/javascript-libraries-syntax.vim', {'for' : ['javascript', 'typescript']}
@@ -89,7 +85,7 @@ call plug#end()
     set visualbell "Flesh screen instead of running bell sound
     set cursorline "Mark cursor line
     set title "set window title as current file name
-    set scrolloff=5 "number of line above and under cursor
+    set scrolloff=3 "number of line above and under cursor
     set confirm "display confirm modal when closing unsave file
   "search
     set hlsearch "highlight search
@@ -97,9 +93,9 @@ call plug#end()
     set ignorecase "ignore case sensitive
     set smartcase "ignore case sensitive till Upper case used
   "indent
-    set tabstop=4 "tab as 4 spaces
-    set softtabstop=4
-    set shiftwidth=4 "when indent with > insert 4 spaces
+    set tabstop=2 "tab as 2 spaces
+    set softtabstop=2
+    set shiftwidth=2 "when indent with > insert 2 spaces
     set expandtab "on pressing tab insert spaces
     set smarttab
     set autoindent
@@ -109,6 +105,10 @@ call plug#end()
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
     " set jsdoc's files as javascript
     autocmd BufEnter *.jsdoc :setlocal filetype=javascript
+  "set directory for swap, backup and history files
+    set directory=$HOME/.vim/swp//
+    set backupdir=$HOME/.vim/backup//
+    set undodir=$HOME/.vim/undodir
 
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree
@@ -142,10 +142,6 @@ call plug#end()
     let g:airline#extensions#ale#enabled = 1
     let g:ale_rust_cargo_use_check = 1
     set completeopt+=noinsert
-    "let g:ale_sign_error = '>'
-    "let g:ale_sign_warning = '-'
-    "highlight ALEErrorSign ctermbg=NONE ctermfg=red
-    "highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
   " # devicons
     let g:airline_powerline_fonts = 1"
   " # nerdcommenter
