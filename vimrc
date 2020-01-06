@@ -18,7 +18,7 @@ call plug#begin('~/.vim/bundle')
 
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -34,7 +34,6 @@ call plug#begin('~/.vim/bundle')
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
-  " Plug 'racer-rust/vim-racer', { 'for': ['rust'] }
   
   " Javascript Plugins
   Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript', 'json']}
@@ -114,8 +113,8 @@ call plug#end()
   " # Nerdtree
     let g:NERDTreeWinPos = 'right'
     let g:NERDTreeWinSize=$NERDTREE_WIDTH
-    let g:NERDTreeDirArrowExpandable = '↑'
-    let g:NERDTreeDirArrowCollapsible = '↓'
+    " let g:NERDTreeDirArrowExpandable = '↑'
+    " let g:NERDTreeDirArrowCollapsible = '↓'
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -135,13 +134,15 @@ call plug#end()
     \ 'scss': ['prettier'],
     \ 'typescript': ['prettier', 'eslint'],
     \ 'javascript': ['prettier', 'eslint'],
-    \ 'html': ['prettier']
+    \ 'html': ['prettier'],
     \}
     let g:ale_fix_on_save = 1
     let g:ale_echo_cursor = 1
     let g:airline#extensions#ale#enabled = 1
     let g:ale_rust_cargo_use_check = 1
     set completeopt+=noinsert
+    let g:ale_sign_error = "✗"
+    let g:ale_sign_warning = "⚠"
   " # devicons
     let g:airline_powerline_fonts = 1"
   " # nerdcommenter
