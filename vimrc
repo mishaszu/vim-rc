@@ -9,7 +9,11 @@ call plug#begin('~/.vim/bundle')
   Plug 'wakatime/vim-wakatime'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
-  Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+  " DB tool
+  "
+  " vim-dadbod 
+  Plug 'tpope/vim-dadbod' 
 
   " Linting & Completion Plugins
   Plug 'w0rp/ale', {
@@ -76,7 +80,7 @@ call plug#end()
     set hidden 
     set ruler "Always show cursor position
     set number "Show line numbers
-    set relativenumber "Show relative cursor line number position
+    set nornu
     set backspace=indent,eol,start "allow backspace between lines and over indentation
     set mouse=v
     set clipboard=unnamed
@@ -132,9 +136,9 @@ call plug#end()
     let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ 'scss': ['prettier'],
-    \ 'typescript': ['prettier', 'eslint'],
-    \ 'javascript': ['prettier', 'eslint'],
-    \ 'html': ['prettier'],
+    \ 'typescript': ['eslint'],
+    \ 'javascript': ['eslint'],
+    \ 'html': ['prettier']
     \}
     let g:ale_fix_on_save = 1
     let g:ale_echo_cursor = 1
