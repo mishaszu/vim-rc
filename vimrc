@@ -3,21 +3,25 @@
 call plug#begin('~/.vim/bundle')
 
   " Vim functionality
-  Plug 'scrooloose/nerdtree'
-  Plug 'vim-airline/vim-airline'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'wakatime/vim-wakatime'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-commentary'
+  Plug 'scrooloose/nerdtree' " Project tree
+  Plug 'vim-airline/vim-airline' " Status line
+  Plug 'ryanoasis/vim-devicons' " support for devicons
+  Plug 'wakatime/vim-wakatime' " wakatime - time tracker
+  Plug 'tpope/vim-fugitive' " git integration
+  Plug 'tpope/vim-commentary' " vim comments
+  Plug 'stegtmeyer/find-complete' " auto complete file paths
+  Plug 'gcmt/taboo.vim'  " naming tabs
+  Plug 'xolox/vim-session'  " saving session
+  Plug 'xolox/vim-misc' " for vim session
 
   " DB tool
   "
   " vim-dadbod 
-  Plug 'tpope/vim-dadbod' 
+  " Plug 'tpope/vim-dadbod'  " plugin for interacting with databases
 
   " Linting & Completion Plugins
   Plug 'w0rp/ale', {
-  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['rust', 'javascript', 'reason', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
 
   Plug 'prettier/vim-prettier', {
@@ -25,6 +29,7 @@ call plug#begin('~/.vim/bundle')
   \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
 
+  " Plugin for language servers
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " Syntax Plugins
@@ -34,25 +39,28 @@ call plug#begin('~/.vim/bundle')
   Plug 'Yggdroot/indentLine' "Indendation
   Plug 'Raimondi/delimitMate' "Matching closing brackets
   Plug 'tpope/vim-surround' "Managing surrondings like brackets
+  Plug 'tpope/vim-unimpaired' " finding for exmaple next error
   Plug 'luochen1990/rainbow' "Coloring brackets
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
   
   " Javascript Plugins
-  Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript', 'json']}
-  Plug 'mxw/vim-jsx', { 'for': ['javascript', 'typescript', 'json'] }
-  Plug 'othree/javascript-libraries-syntax.vim', {'for' : ['javascript', 'typescript']}
-  Plug 'othree/yajs.vim', {'for' : ['javascript', 'typescript']}
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json']}
+  Plug 'mxw/vim-jsx', {'for': ['javascript', 'typescript', 'json']}
+  Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript', 'typescript', 'json']}
+  Plug 'othree/yajs.vim', {'for': ['javascript', 'typescript', 'json']}
+  Plug 'ruanyl/vim-sort-imports', {'for': ['javascript', 'typescript']}
 
   " Typescript Plugins
-  Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript', 'json'] }
-  Plug 'peitalin/vim-jsx-typescript', { 'for': ['javascript', 'typescript', 'json'] }
+  Plug 'leafgarland/typescript-vim', {'for': ['javascript', 'typescript', 'json']} 
+  Plug 'peitalin/vim-jsx-typescript', {'for': ['javascript', 'typescript', 'json']}
+  Plug 'ianks/vim-tsx', {'for': ['javascript', 'typescript']}
 
   " HTML Plugins
   Plug 'mattn/emmet-vim'
   Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'typescript', 'json', 'css', 'scss'] }
-  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'mustache/vim-mustache-handlebars', { 'for': ['html', 'javascript', 'typescript', 'json', 'css', 'scss'] }
 
   "CSS Plugins
   Plug 'ap/vim-css-color', { 'for': ['javascript', 'typescript', 'json', 'css', 'scss'] }
@@ -60,13 +68,17 @@ call plug#begin('~/.vim/bundle')
   " JSON Plugins
   Plug 'elzr/vim-json', { 'for': ['json'] }
 
+  " ReasonML
+  Plug 'reasonml-editor/vim-reason-plus'
+
 call plug#end()
 
 """---GENERAL CONFIGURATION---"""
   "syntax
     syntax on "enable syntax highlight
     set t_Co=256 "set color scheme
-    colorscheme dracula
+    " colorscheme dracula
+    colorscheme panda
     filetype plugin on
   "config
     set encoding=UTF-8
@@ -117,20 +129,11 @@ call plug#end()
   " # Nerdtree
     let g:NERDTreeWinPos = 'right'
     let g:NERDTreeWinSize=$NERDTREE_WIDTH
-    " let g:NERDTreeDirArrowExpandable = '↑'
-    " let g:NERDTreeDirArrowCollapsible = '↓'
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
   " # Rust.vim
     let g:rustfmt_autosave = 1
-  " # Racer
-    let g:racer_cmd = $RACER_SRC_PATH
-    let g:racer_experimental_completer = 1
-    au FileType rust nmap gd <Plug>(rust-def)
-    au FileType rust nmap gs <Plug>(rust-def-split)
-    au FileType rust nmap gx <Plug>(rust-def-vertical)
-    au FileType rust nmap <leader>gd <Plug>(rust-doc)
   " # ALE
     let g:ale_completion_enabled = 0
     let g:ale_fixers = {
@@ -138,7 +141,9 @@ call plug#end()
     \ 'scss': ['prettier'],
     \ 'typescript': ['eslint'],
     \ 'javascript': ['eslint'],
-    \ 'html': ['prettier']
+    \ 'html': ['prettier'],
+    \ 'reason': ['refmt'],
+    \ 'rust': ['rustfmt']
     \}
     let g:ale_fix_on_save = 1
     let g:ale_echo_cursor = 1
@@ -185,6 +190,13 @@ call plug#end()
     \}
   " # emmet
   let g:user_emmet_leader_key=','
+  " vim-sort-imports
+  let g:import_sort_auto = 0
+  " vim-session
+  let g:session_autoload = 'no'
+  let g:session_autosave = 'yes'
+  " taboo
+  set sessionoptions+=tabpages,globals
 
 """---KEY MAPPINGS---"""
   " switch up VIM window
@@ -222,3 +234,33 @@ call plug#end()
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
+
+  " CoC
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  " Use K to show documentation in preview window
+   nnoremap <silent> K :call <SID>show_documentation()<CR>
+  
+   function! s:show_documentation()
+     if (index(['vim','help'], &filetype) >= 0)
+       execute 'h '.expand('<cword>')
+         else
+       call CocAction('doHover')
+     endif
+   endfunction
+
+
+   " copy to windows clopboard
+   func! GetSelectedText()
+     normal gv"xy
+     let result = getreg("x")
+     return result
+   endfunc
+
+   " if !has("clipboard") && executable("clip.exe")
+   noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
+   noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
+   " endif
