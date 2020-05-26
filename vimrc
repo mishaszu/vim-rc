@@ -13,6 +13,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'gcmt/taboo.vim'  " naming tabs
   Plug 'xolox/vim-session'  " saving session
   Plug 'xolox/vim-misc' " for vim session
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
   " DB tool
   "
@@ -26,7 +27,7 @@ call plug#begin('~/.vim/bundle')
 
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
-  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['rust', 'javascript', 'reason', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
 
   " Plugin for language servers
@@ -41,6 +42,8 @@ call plug#begin('~/.vim/bundle')
   Plug 'tpope/vim-surround' "Managing surrondings like brackets
   Plug 'tpope/vim-unimpaired' " finding for exmaple next error
   Plug 'luochen1990/rainbow' "Coloring brackets
+  Plug 'Mizux/vim-colorschemes'
+  Plug 'matveyt/vim-modest' 
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
@@ -76,11 +79,10 @@ call plug#end()
 """---GENERAL CONFIGURATION---"""
   "syntax
     syntax on "enable syntax highlight
-    set t_Co=256 "set color scheme
-    " colorscheme dracula
+    " set t_Co=256 "set color scheme
     colorscheme panda
     filetype plugin on
-  "config
+  ""config
     set encoding=UTF-8
     set exrc "enable .vimrc file per project
     set secure
@@ -102,19 +104,20 @@ call plug#end()
     set title "set window title as current file name
     set scrolloff=3 "number of line above and under cursor
     set confirm "display confirm modal when closing unsave file
-  "search
+    set t_ut=
+  ""search
     set hlsearch "highlight search
     set incsearch "incremental search
     set ignorecase "ignore case sensitive
     set smartcase "ignore case sensitive till Upper case used
-  "indent
+  ""indent
     set tabstop=2 "tab as 2 spaces
     set softtabstop=2
     set shiftwidth=2 "when indent with > insert 2 spaces
     set expandtab "on pressing tab insert spaces
     set smarttab
     set autoindent
-  "omnicompletion
+  ""omnicompletion
     set omnifunc=syntaxcomplete#Complete
     " close preview window from omnicompletion
     autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -226,12 +229,17 @@ call plug#end()
   " split window horizontally
   nmap <C-q> :split<CR>
   " prettier with Ale
-  map <C-f> :ALEFix<CR>
+  " map <C-f> :ALEFix<CR>
   " save file
   nmap <C-s> :w<CR>
   " use Ctrl-k and Ctrl-j to jump up and down between errors
-  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  " nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  nmap <silent> <C-k> <Plug>(coc-diagnostic-next)
+  nmap <silent> <C-j> <Plug>(coc-diagnostic-prev)
+
+  nmap <silent> <C-f> <Plug>(coc-format)
+ 
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
 
