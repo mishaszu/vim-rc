@@ -22,7 +22,7 @@ call plug#begin('~/.vim/bundle')
 
   " Linting & Completion Plugins
   Plug 'w0rp/ale', {
-  \ 'for': ['rust', 'javascript', 'reason', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
   \}
 
   Plug 'prettier/vim-prettier', {
