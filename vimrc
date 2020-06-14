@@ -16,7 +16,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
   " DB tool
-  "
   " vim-dadbod 
   " Plug 'tpope/vim-dadbod'  " plugin for interacting with databases
 
@@ -72,7 +71,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'elzr/vim-json', { 'for': ['json'] }
 
   " ReasonML
-  Plug 'reasonml-editor/vim-reason-plus'
+  Plug 'reasonml-editor/vim-reason-plus', {'for': ['reason']}
 
 call plug#end()
 
@@ -80,7 +79,7 @@ call plug#end()
   "syntax
     syntax on "enable syntax highlight
     " set t_Co=256 "set color scheme
-    colorscheme panda
+    colorscheme dracula
     filetype plugin on
   ""config
     set encoding=UTF-8
@@ -117,12 +116,6 @@ call plug#end()
     set expandtab "on pressing tab insert spaces
     set smarttab
     set autoindent
-  ""omnicompletion
-    set omnifunc=syntaxcomplete#Complete
-    " close preview window from omnicompletion
-    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-    " set jsdoc's files as javascript
-    autocmd BufEnter *.jsdoc :setlocal filetype=javascript
   "set directory for swap, backup and history files
     set directory=$HOME/.vim/swp//
     set backupdir=$HOME/.vim/backup//
