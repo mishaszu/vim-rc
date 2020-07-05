@@ -228,8 +228,8 @@ call plug#end()
   " use Ctrl-k and Ctrl-j to jump up and down between errors
   " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   " nmap <silent> <C-j> <Plug>(ale_next_wrap)
-  nmap <silent> <C-k> <Plug>(coc-diagnostic-next)
-  nmap <silent> <C-j> <Plug>(coc-diagnostic-prev)
+  nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+  nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
 
   nmap <silent> <C-f> <Plug>(coc-format)
  
@@ -265,3 +265,12 @@ call plug#end()
    noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
    noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
    " endif
+   "
+function SetLight()
+  colorscheme modest
+  set background=light
+endfunction
+
+function SetDark()
+  colorscheme dracula
+endfunction
