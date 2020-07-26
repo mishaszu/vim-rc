@@ -36,6 +36,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'markvincze/panda-vim'
   Plug 'sickill/vim-monokai'
   Plug 'dracula/vim'
+  Plug 'arzg/vim-colors-xcode'
   Plug 'Yggdroot/indentLine' "Indendation
   Plug 'Raimondi/delimitMate' "Matching closing brackets
   Plug 'tpope/vim-surround' "Managing surrondings like brackets
@@ -79,7 +80,7 @@ call plug#end()
   "syntax
     syntax on "enable syntax highlight
     " set t_Co=256 "set color scheme
-    colorscheme dracula
+    colorscheme xcodedarkhc
     filetype plugin on
   ""config
     set encoding=UTF-8
