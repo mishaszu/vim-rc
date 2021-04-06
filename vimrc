@@ -1,19 +1,19 @@
-"""---PLUGINS CONFIG---"
+"---PLUGINS CONFIG---"
 """---VIM PLUG---"
 call plug#begin('~/.vim/bundle')
 
   " Vim functionality
-  Plug 'scrooloose/nerdtree' " Project tree
-  Plug 'vim-airline/vim-airline' " Status line
-  Plug 'ryanoasis/vim-devicons' " support for devicons
-  Plug 'wakatime/vim-wakatime' " wakatime - time tracker
-  Plug 'tpope/vim-fugitive' " git integration
-  Plug 'tpope/vim-commentary' " vim comments
-  Plug 'stegtmeyer/find-complete' " auto complete file paths
   Plug 'gcmt/taboo.vim'  " naming tabs
-  Plug 'xolox/vim-session'  " saving session
-  Plug 'xolox/vim-misc' " for vim session
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'ryanoasis/vim-devicons' " support for devicons
+  Plug 'scrooloose/nerdtree' " Project tree
+  Plug 'stegtmeyer/find-complete' " auto complete file paths
+  " Plug 'tpope/vim-commentary' " vim comments
+  Plug 'preservim/nerdcommenter'
+  Plug 'tpope/vim-fugitive' " git integration
+  Plug 'vim-airline/vim-airline' " Status line
+  Plug 'xolox/vim-misc' " for vim session
+  Plug 'xolox/vim-session'  " saving session
 
   " DB tool
   " vim-dadbod 
@@ -33,26 +33,27 @@ call plug#begin('~/.vim/bundle')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " Syntax Plugins
-  Plug 'markvincze/panda-vim'
-  Plug 'sickill/vim-monokai'
-  Plug 'dracula/vim'
-  Plug 'arzg/vim-colors-xcode'
-  Plug 'Yggdroot/indentLine' "Indendation
+  Plug 'Mizux/vim-colorschemes'
   Plug 'Raimondi/delimitMate' "Matching closing brackets
+  Plug 'Yggdroot/indentLine' "Indendation
+  Plug 'arzg/vim-colors-xcode'
+  Plug 'dracula/vim'
+  Plug 'luochen1990/rainbow' "Coloring brackets
+  Plug 'markvincze/panda-vim'
+  Plug 'matveyt/vim-modest' 
+  Plug 'sickill/vim-monokai'
   Plug 'tpope/vim-surround' "Managing surrondings like brackets
   Plug 'tpope/vim-unimpaired' " finding for exmaple next error
-  Plug 'luochen1990/rainbow' "Coloring brackets
-  Plug 'Mizux/vim-colorschemes'
-  Plug 'matveyt/vim-modest' 
+  Plug 'cespare/vim-toml'
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
   
   " Javascript Plugins
-  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json']}
   Plug 'mxw/vim-jsx', {'for': ['javascript', 'typescript', 'json']}
   Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript', 'typescript', 'json']}
   Plug 'othree/yajs.vim', {'for': ['javascript', 'typescript', 'json']}
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'typescript', 'json']}
   Plug 'ruanyl/vim-sort-imports', {'for': ['javascript', 'typescript']}
 
   " Typescript Plugins
@@ -71,56 +72,59 @@ call plug#begin('~/.vim/bundle')
   " JSON Plugins
   Plug 'elzr/vim-json', { 'for': ['json'] }
 
-  " ReasonML
-  Plug 'reasonml-editor/vim-reason-plus', {'for': ['reason']}
+  " ReasonML - Rescript
+  Plug 'rescript-lang/vim-rescript'
+  " Plug 'reasonml-editor/vim-reason-plus', {'for': ['reason']}
 
 call plug#end()
 
 """---GENERAL CONFIGURATION---"""
   "syntax
-    syntax on "enable syntax highlight
-    " set t_Co=256 "set color scheme
+    " colorscheme dracula
     colorscheme xcodedarkhc
     filetype plugin on
+    syntax on
   ""config
-    set encoding=UTF-8
-    set exrc "enable .vimrc file per project
-    set secure
-    set shell=sh
-    set binary
-    set noeol "No extra line on end of file
-    set history=700 "commands history
     set autoread "Automatically re-read ﬁles if unmodiﬁed inside Vim
-    set hidden 
-    set ruler "Always show cursor position
-    set number "Show line numbers
-    set nornu
     set backspace=indent,eol,start "allow backspace between lines and over indentation
-    set mouse=v
+    set binary
     set clipboard=unnamed
     set conceallevel=1
-    set visualbell "Flesh screen instead of running bell sound
-    set cursorline "Mark cursor line
-    set title "set window title as current file name
-    set scrolloff=3 "number of line above and under cursor
     set confirm "display confirm modal when closing unsave file
+    set cursorline "Mark cursor line
+    set encoding=UTF-8
+    set exrc "enable .vimrc file per project
+    set hidden 
+    set history=700 "commands history
+    set mouse=v
+    set noeol "No extra line on end of file
+    set nornu
+    set number "Show line numbers
+    set ruler "Always show cursor position
+    set scrolloff=3 "number of line above and under cursor
+    set secure
+    set shell=sh
     set t_ut=
+    set title "set window title as current file name
+    set visualbell "Flesh screen instead of running bell sound
   ""search
     set hlsearch "highlight search
-    set incsearch "incremental search
     set ignorecase "ignore case sensitive
+    set incsearch "incremental search
     set smartcase "ignore case sensitive till Upper case used
   ""indent
-    set tabstop=2 "tab as 2 spaces
-    set softtabstop=2
-    set shiftwidth=2 "when indent with > insert 2 spaces
-    set expandtab "on pressing tab insert spaces
-    set smarttab
     set autoindent
+    set expandtab "on pressing tab insert spaces
+    set shiftwidth=2 "when indent with > insert 2 spaces
+    set smarttab
+    set softtabstop=2
+    set tabstop=2 "tab as 2 spaces
   "set directory for swap, backup and history files
     set directory=$HOME/.vim/swp//
     set backupdir=$HOME/.vim/backup//
     set undodir=$HOME/.vim/undodir
+    set nobackup
+    set nowritebackup
 
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree
@@ -129,6 +133,7 @@ call plug#end()
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+    let g:NERDTreeIgnore = ['^node_modules$', '\.bs.js$']
   " # Rust.vim
     let g:rustfmt_autosave = 1
   " # ALE
@@ -194,6 +199,13 @@ call plug#end()
   let g:session_autosave = 'yes'
   " taboo
   set sessionoptions+=tabpages,globals
+
+  " rescript
+  " Hooking up the ReScript autocomplete function
+  set omnifunc=rescript#Complete
+  " When preview is enabled, omnicomplete will display additional
+  " information for a selected item
+  set completeopt+=preview
 
 """---KEY MAPPINGS---"""
   " switch up VIM window
@@ -275,3 +287,10 @@ endfunction
 function SetDark()
   colorscheme dracula
 endfunction
+
+if &term =~ '^xterm'
+	" normal mode
+	let &t_EI .= "\<Esc>[0 q"
+	" insert mode
+	let &t_SI .= "\<Esc>[6 q"
+endif
