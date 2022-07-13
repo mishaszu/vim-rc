@@ -249,6 +249,10 @@ call plug#end()
   " search under cursosr
   vnoremap // y/<C-R>"<CR>
 
+  nmap <leader>f :FZF <CR>
+  " center nerdtree on opened file
+  map <leader>n :NERDTreeFind<CR>
+
   " CoC
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
