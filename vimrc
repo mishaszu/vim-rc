@@ -38,6 +38,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'Yggdroot/indentLine' "Indendation
   Plug 'arzg/vim-colors-xcode'
   Plug 'dracula/vim'
+  Plug 'NLKNguyen/papercolor-theme'
   Plug 'luochen1990/rainbow' "Coloring brackets
   Plug 'markvincze/panda-vim'
   Plug 'matveyt/vim-modest' 
@@ -59,7 +60,7 @@ call plug#begin('~/.vim/bundle')
   " Typescript Plugins
   Plug 'leafgarland/typescript-vim', {'for': ['javascript', 'typescript', 'json']} 
   Plug 'peitalin/vim-jsx-typescript', {'for': ['javascript', 'typescript', 'json']}
-  Plug 'ianks/vim-tsx', {'for': ['javascript', 'typescript']}
+  Plug 'ianks/vim-tsx'
 
   " HTML Plugins
   Plug 'mattn/emmet-vim'
@@ -74,14 +75,16 @@ call plug#begin('~/.vim/bundle')
 
   " ReasonML - Rescript
   Plug 'rescript-lang/vim-rescript'
-  " Plug 'reasonml-editor/vim-reason-plus', {'for': ['reason']}
+  Plug 'reasonml-editor/vim-reason-plus', {'for': ['reason']}
 
 call plug#end()
 
 """---GENERAL CONFIGURATION---"""
   "syntax
     " colorscheme dracula
-    colorscheme xcodedarkhc
+    colorscheme PaperColor
+    set background=dark
+    " colorscheme xcodedarkhc
     filetype plugin on
     syntax on
   ""config
@@ -128,7 +131,7 @@ call plug#end()
 
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree
-    let g:NERDTreeWinPos = 'right'
+    let g:NERDTreeWinPos = 'left'
     let g:NERDTreeWinSize=$NERDTREE_WIDTH
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
@@ -141,8 +144,8 @@ call plug#end()
     let g:ale_fixers = {
     \ 'css': ['prettier'],
     \ 'scss': ['prettier'],
-    \ 'typescript': ['eslint'],
-    \ 'javascript': ['eslint'],
+    \ 'typescript': ['prettier'],
+    \ 'javascript': ['prettier'],
     \ 'html': ['prettier'],
     \ 'reason': ['refmt'],
     \ 'rust': ['rustfmt']
@@ -258,6 +261,8 @@ call plug#end()
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
+  " " allos to pick definition from popup
+  " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
   " Use K to show documentation in preview window
    nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -284,12 +289,11 @@ call plug#end()
    " endif
    "
 function SetLight()
-  colorscheme modest
   set background=light
 endfunction
 
 function SetDark()
-  colorscheme dracula
+  set background=dark
 endfunction
 
 if &term =~ '^xterm'
