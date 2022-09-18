@@ -14,15 +14,16 @@ call plug#begin('~/.vim/bundle')
   Plug 'vim-airline/vim-airline' " Status line
   Plug 'xolox/vim-misc' " for vim session
   Plug 'xolox/vim-session'  " saving session
+  Plug 'github/copilot.vim'
 
   " DB tool
   " vim-dadbod 
   " Plug 'tpope/vim-dadbod'  " plugin for interacting with databases
 
   " Linting & Completion Plugins
-  Plug 'w0rp/ale', {
-  \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
-  \}
+  " Plug 'w0rp/ale', {
+  " \ 'for': ['rust', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html']
+  " \}
 
   Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
@@ -79,7 +80,7 @@ call plug#begin('~/.vim/bundle')
 
 call plug#end()
 
-"""---GENERAL CONFIGURATION---"""
+""""---GENERAL CONFIGURATION---"""
   "syntax
     " colorscheme dracula
     colorscheme PaperColor
@@ -97,6 +98,7 @@ call plug#end()
     set cursorline "Mark cursor line
     set encoding=UTF-8
     set exrc "enable .vimrc file per project
+    set secure
     set hidden 
     set history=700 "commands history
     set mouse=v
@@ -139,24 +141,24 @@ call plug#end()
     let g:NERDTreeIgnore = ['^node_modules$', '\.bs.js$']
   " # Rust.vim
     let g:rustfmt_autosave = 1
-  " # ALE
-    let g:ale_completion_enabled = 0
-    let g:ale_fixers = {
-    \ 'css': ['prettier'],
-    \ 'scss': ['prettier'],
-    \ 'typescript': ['prettier'],
-    \ 'javascript': ['prettier'],
-    \ 'html': ['prettier'],
-    \ 'reason': ['refmt'],
-    \ 'rust': ['rustfmt']
-    \}
-    let g:ale_fix_on_save = 1
-    let g:ale_echo_cursor = 1
-    let g:airline#extensions#ale#enabled = 1
-    let g:ale_rust_cargo_use_check = 1
-    set completeopt+=noinsert
-    let g:ale_sign_error = "✗"
-    let g:ale_sign_warning = "⚠"
+"  " # ALE
+"    let g:ale_completion_enabled = 0
+"    let g:ale_fixers = {
+"    \ 'css': ['prettier'],
+"    \ 'scss': ['prettier'],
+"    \ 'typescript': ['prettier'],
+"    \ 'javascript': ['prettier'],
+"    \ 'html': ['prettier'],
+"    \ 'reason': ['refmt'],
+"    \ 'rust': ['rustfmt']
+"    \}
+"    let g:ale_fix_on_save = 1
+"    let g:ale_echo_cursor = 1
+"    let g:airline#extensions#ale#enabled = 1
+"    let g:ale_rust_cargo_use_check = 1
+"    set completeopt+=noinsert
+"    let g:ale_sign_error = "✗"
+"    let g:ale_sign_warning = "⚠"
   " # devicons
     let g:airline_powerline_fonts = 1"
   " # nerdcommenter
@@ -262,7 +264,15 @@ call plug#end()
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
   " " allos to pick definition from popup
-  " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+  inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+  if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+  else
+    inoremap <silent><expr> <c-@> coc#refresh()
+  endif
 
   " Use K to show documentation in preview window
    nnoremap <silent> K :call <SID>show_documentation()<CR>
