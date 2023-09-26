@@ -8,8 +8,9 @@ call plug#begin('~/.vim/bundle')
   Plug 'ryanoasis/vim-devicons' " support for devicons
   Plug 'scrooloose/nerdtree' " Project tree
   Plug 'stegtmeyer/find-complete' " auto complete file paths
-  " Plug 'tpope/vim-commentary' " vim comments
-  Plug 'preservim/nerdcommenter'
+  Plug 'tpope/vim-commentary' " vim comments
+  Plug 'suy/vim-context-commentstring' " for vim comments
+  " Plug 'preservim/nerdcommenter'
   Plug 'tpope/vim-fugitive' " git integration
   Plug 'vim-airline/vim-airline' " Status line
   Plug 'xolox/vim-misc' " for vim session
@@ -162,9 +163,9 @@ call plug#end()
   " # devicons
     let g:airline_powerline_fonts = 1"
   " # nerdcommenter
-    let g:NERDSpaceDelims = 1
-    let g:NERDCommentEmptyLines = 1
-    let g:NERDTrimTrailingWhitespace = 1
+    " let g:NERDSpaceDelims = 1
+    " let g:NERDCommentEmptyLines = 1
+    " let g:NERDTrimTrailingWhitespace = 1
   " # prettier
     let g:prettier#config#tab_width = 2
     let g:prettier#config#print_width = 80

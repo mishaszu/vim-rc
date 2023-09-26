@@ -9,6 +9,9 @@ if [ "$1" = "$str" ];
     cp ./vimrc ./backup/"$LOGFILE"
     cp ~/.vimrc ./vimrc
     echo "Copied global configuration as repo configuration"
+  elif [ "$1" = "-h" ];
+  then
+    echo "- '-p' for coping current configuration to repo\n- no '-p' for coping repo configuration as current"
   else
     cp ~/.vimrc ./backup/"$LOGFILE"
     cp ./vimrc ~/.vimrc
