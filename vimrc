@@ -136,7 +136,7 @@ call plug#end()
 
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree
-    let g:NERDTreeWinPos = 'left'
+    let g:NERDTreeWinPos = 'right'
     let g:NERDTreeWinSize=$NERDTREE_WIDTH
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
