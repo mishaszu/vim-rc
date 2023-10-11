@@ -48,6 +48,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'tpope/vim-surround' "Managing surrondings like brackets
   Plug 'tpope/vim-unimpaired' " finding for exmaple next error
   Plug 'cespare/vim-toml'
+  Plug 'franbach/miramare'
 
   " Rust Plugins
   Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
@@ -83,8 +84,9 @@ call plug#end()
 
 """"---GENERAL CONFIGURATION---"""
   "syntax
+    set termguicolors
     " colorscheme dracula
-    colorscheme PaperColor
+    colorscheme miramare
     set background=dark
     " colorscheme xcodedarkhc
     filetype plugin on
