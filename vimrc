@@ -137,7 +137,11 @@ call plug#end()
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree
     let g:NERDTreeWinPos = 'right'
-    let g:NERDTreeWinSize=$NERDTREE_WIDTH
+    if exists($NERDTREE_WIDTH)
+      let g:NERDTreeWinSize=$NERDTREE_WIDTH
+    else
+      let g:NERDTreeWinSize=100
+    endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
