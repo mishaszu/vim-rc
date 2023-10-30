@@ -16,6 +16,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'xolox/vim-misc' " for vim session
   Plug 'xolox/vim-session'  " saving session
   Plug 'github/copilot.vim'
+  Plug 'lervag/vimtex'
 
   " DB tool
   " vim-dadbod 
@@ -137,11 +138,7 @@ call plug#end()
 """---PLUGINS CONFIGURATION---"""
   " # Nerdtree
     let g:NERDTreeWinPos = 'right'
-    if !empty($NERDTREE_WIDTH)
-      let g:NERDTreeWinSize=$NERDTREE_WIDTH
-    else
-      let g:NERDTreeWinSize=30
-    endif
+    let g:NERDTreeWinSize=$NERDTREE_WIDTH
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
