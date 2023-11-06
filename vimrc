@@ -17,6 +17,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'xolox/vim-session'  " saving session
   Plug 'github/copilot.vim'
   Plug 'lervag/vimtex'
+  Plug 'bkad/CamelCaseMotion'
 
   " DB tool
   " vim-dadbod 
@@ -143,6 +144,8 @@ call plug#end()
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
     let g:NERDTreeIgnore = ['^node_modules$', '\.bs.js$']
+  " # CamelCaseMotion
+    let g:camelcasemotion_key = '<leader>'
   " # Rust.vim
     let g:rustfmt_autosave = 1
 "  " # ALE
